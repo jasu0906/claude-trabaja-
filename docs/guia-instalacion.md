@@ -13,6 +13,7 @@ Dura 20 a 30 minutos. El teléfono lo maneja **el dueño**, no tú. Si lo haces 
 2. **Pantalla de inicio.** Menú del navegador → "Agregar a pantalla de inicio". Cierra el navegador y abre desde el ícono.
 3. **Empezar.** Toca "Empezar con mi bodega" para borrar el ejemplo.
 4. **Productos.** En Productos, abre "Agregar de la lista rápida" y que toque los que vende. Máximo 10 hoy: los que más salen.
+   Si su distribuidora ya tiene catálogo en Reponer, abre el enlace de la distribuidora y toca "Agregar a mi bodega": los productos llegan con precio, empaque y días de entrega.
 5. **Completar.** Toca "Editar" en cada uno y que ponga proveedor, costo y cuántos días tarda en llegar. Si no sabe el costo exacto, que ponga el aproximado.
 6. **Primer conteo.** En Conteo, que cuente el estante y escriba cuántas hay. Guardar.
 7. **Ajustes.** Nombre de la bodega, tasa del día y el WhatsApp de cada proveedor.

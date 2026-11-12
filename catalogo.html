@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Armar catálogo de distribuidora</title>
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="sitio.css">
+<style>
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--tenue)}
+input,textarea{font:16px var(--fuente);padding:10px;border:1px solid var(--linea);border-radius:8px;background:var(--papel);color:var(--tinta);width:100%}
+textarea{font:13px ui-monospace,Menlo,Consolas,monospace;min-height:180px}
+.campos{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+button.b{cursor:pointer}
+#error{color:#b3261e;font-weight:600}
+code{background:var(--papel);border:1px solid var(--linea);border-radius:4px;padding:1px 5px;font-size:.9em;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<header class="sitio"><div class="ancho"><a class="logo" href="./">Re<span>poner</span></a><span class="nota">Herramienta interna</span></div></header>
+<main class="ancho">
+  <section>
+    <h1>Armar catálogo de distribuidora</h1>
+    <p class="entrada">Convierte la lista de precios de una distribuidora en el archivo que lee Reponer. Nada se envía a ningún lado: todo ocurre en este navegador.</p>
+  </section>
+  <section>
+    <div class="campos">
+      <label>Nombre de la distribuidora<input id="nombre" placeholder="Distribuidora La Central"></label>
+      <label>Nombre corto para el enlace<input id="slug" placeholder="lacentral"></label>
+      <label>WhatsApp de pedidos (con código de país)<input id="whatsapp" inputmode="tel" placeholder="584121234567"></label>
+      <label>Días que tarda en entregar<input id="entrega" inputmode="numeric" value="2"></label>
+      <label>Pedido mínimo en USD (0 si no tiene)<input id="minimo" inputmode="decimal" value="0"></label>
+    </div>
+    <label>Productos: uno por línea, en el orden nombre; costo en USD; unidades por empaque. También puedes pegar tres columnas copiadas de Excel.
+      <textarea id="lineas" placeholder="Harina de maíz 1 kg; 1,10; 20&#10;Arroz 1 kg; 1,25; 24"></textarea>
+    </label>
+    <div class="botones"><button class="b" id="generar" type="button">Generar archivo</button></div>
+    <p id="error" hidden></p>
+  </section>
+  <section id="resultado" hidden>
+    <h2>Listo: <span id="cuenta"></span></h2>
+    <ol>
+      <li>Copia el texto de abajo.</li>
+      <li>En GitHub, entra a la carpeta <code>catalogos</code> del repositorio y crea (o edita) el archivo <code id="archivo"></code>. Pega el texto y guarda en la rama <code>main</code>.</li>
+      <li>En uno o dos minutos, este es el enlace para las bodegas: <code id="enlace"></code></li>
+    </ol>
+    <label>Contenido del archivo<textarea id="salida" readonly></textarea></label>
+    <div class="botones"><button class="b sec" id="copiar" type="button">Copiar contenido</button><button class="b sec" id="copiarEnlace" type="button">Copiar enlace</button></div>
+    <p class="nota" id="aviso"></p>
+  </section>
+</main>
+<script>
+'use strict';
+function $(i){ return document.getElementById(i); }
+function num(v){ var n=parseFloat(String(v).replace(/[^0-9,.\-]/g,'').replace(',','.')); return isFinite(n)&&n>=0?n:null; }
+function hoy(){ var d=new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset()); return d.toISOString().slice(0,10); }
+function aSlug(t){ return String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40); }
+function construir(d){
+  var errores=[], productos=[], vistos={};
+  d.lineas.split(/\r?\n/).forEach(function(l,i){
+    if(!l.trim()) return;
+    var p=l.split(/\t|;/).map(function(x){return x.trim();});
+    var c=num(p[1]), e=p[2]===undefined||p[2]===''?1:num(p[2]);
+    if(!p[0]||c===null||e===null||e<1){ errores.push('Línea '+(i+1)+': revisa nombre, costo y empaque.'); return; }
+    var k=p[0].toLowerCase(); if(vistos[k]){ errores.push('Línea '+(i+1)+': "'+p[0]+'" está repetido.'); return; } vistos[k]=1;
+    productos.push({n:p[0],c:Math.round(c*100)/100,e:Math.round(e)});
+  });
+  var slug=aSlug(d.slug||d.nombre);
+  if(!d.nombre.trim()) errores.unshift('Falta el nombre de la distribuidora.');
+  if(!slug) errores.unshift('Falta el nombre corto para el enlace.');
+  if(!productos.length&&!errores.length) errores.push('Agrega al menos un producto.');
+  return {errores:errores,slug:slug,catalogo:{nombre:d.nombre.trim(),whatsapp:String(d.whatsapp).replace(/\D/g,''),entrega:Math.max(0,Math.round(num(d.entrega)||0)),minimo:num(d.minimo)||0,actualizado:hoy(),productos:productos}};
+}
+$('nombre').addEventListener('input',function(){ if(!$('slug').dataset.tocado) $('slug').value=aSlug(this.value); });
+$('slug').addEventListener('input',function(){ this.dataset.tocado='1'; });
+$('generar').addEventListener('click',function(){
+  var r=construir({nombre:$('nombre').value,slug:$('slug').value,whatsapp:$('whatsapp').value,entrega:$('entrega').value,minimo:$('minimo').value,lineas:$('lineas').value});
+  $('error').hidden=!r.errores.length; $('error').textContent=r.errores.slice(0,5).join(' ');
+  $('resultado').hidden=!!r.errores.length; if(r.errores.length) return;
+  var base=location.href.replace(/catalogo\.html.*$/,'');
+  $('cuenta').textContent=r.catalogo.productos.length+' productos';
+  $('archivo').textContent=r.slug+'.json'; $('enlace').textContent=base+'?d='+r.slug;
+  $('salida').value=JSON.stringify(r.catalogo,null,2);
+  $('aviso').textContent=r.catalogo.productos.length>150?'Este catálogo pasa de 150 productos, el límite del plan Distribuidor.':'';
+});
+function copiar(t,b){ try{ navigator.clipboard.writeText(t).then(function(){ b.textContent='Copiado'; }); }catch(e){ $('salida').select(); } }
+$('copiar').addEventListener('click',function(){ copiar($('salida').value,this); });
+$('copiarEnlace').addEventListener('click',function(){ copiar($('enlace').textContent,this); });
+</script>
+</body>
+</html>
