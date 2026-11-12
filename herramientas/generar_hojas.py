@@ -39,8 +39,9 @@ filas = [
     ("Reponer Instalado (pago único)", 35, "Decisión propia. Referencias: LoTuyo cobra unos $14,99 al mes y Loyverse $25 al mes por tienda por su inventario avanzado."),
     ("Acompañamiento (al mes)", 10, "Decisión propia. Por debajo de LoTuyo ($14,99 al mes)."),
     ("Plan Distribuidor, precio fundador (al mes)", 19, "Oferta para las 3 primeras distribuidoras durante 6 meses. Precio normal: $39."),
-    ("Plan Distribuidor, precio normal (al mes)", 39, "Se aplica desde la cuarta distribuidora. No se usa en los primeros 6 meses."),
+    ("Plan Distribuidor, precio normal (al mes)", 39, "Se aplica desde la cuarta distribuidora."),
     ("Meses gratis para cada distribuidora nueva", 2, "Oferta de 60 días gratis."),
+    ("Distribuidoras con precio fundador", 3, "Las 3 primeras pagan el precio fundador; las siguientes, el precio normal."),
     ("Costos", None, None),
     ("Costo de cada instalación (transporte)", 3, "Estimación propia de pasaje ida y vuelta. Ajusta con tu gasto real."),
     ("Instalaciones que piden devolución", 0.10, "Garantía de 30 días. Estimación propia; todavía no hay datos."),
@@ -64,7 +65,7 @@ for nombre, valor, nota in filas:
         celda(s, f"A{r}", nombre, NEG, fill=GRIS); s[f"B{r}"].fill = GRIS; s[f"C{r}"].fill = GRIS
     else:
         celda(s, f"A{r}", nombre)
-        fmt = PCT if nombre.startswith("Instalaciones que piden") else (ENT if ("Meses" in nombre or "Horas" in nombre) else ('0.00' if "Semanas" in nombre else USD))
+        fmt = PCT if nombre.startswith("Instalaciones que piden") else (ENT if ("Meses" in nombre or "Horas" in nombre or "con precio fundador" in nombre) else ('0.00' if "Semanas" in nombre else USD))
         celda(s, f"B{r}", valor, AZUL, fmt, AMARILLO)
         celda(s, f"C{r}", nota, wrap=True)
         R[nombre] = f"Supuestos!$B${r}"
@@ -113,7 +114,7 @@ for nombre, e in escenarios.items():
     celda(w, "A14", "Ingresos", NEG, fill=GRIS)
     fila(15, "Instalaciones", lambda c, p, m: f"={c}6*{P['Reponer Instalado (pago único)']}*(1-{P['Instalaciones que piden devolución']})", fuente=VERDE)
     fila(16, "Acompañamiento", lambda c, p, m: f"={c}11*{P['Acompañamiento (al mes)']}", fuente=VERDE)
-    fila(17, "Plan Distribuidor", lambda c, p, m: f"={c}13*{P['Plan Distribuidor, precio fundador (al mes)']}", fuente=VERDE)
+    fila(17, "Plan Distribuidor", lambda c, p, m: f"=MIN({c}13,{P['Distribuidoras con precio fundador']})*{P['Plan Distribuidor, precio fundador (al mes)']}+MAX(0,{c}13-{P['Distribuidoras con precio fundador']})*{P['Plan Distribuidor, precio normal (al mes)']}", fuente=VERDE)
     fila(18, "Ingresos totales", lambda c, p, m: f"=SUM({c}15:{c}17)", fuente=NEG)
     celda(w, "A19", "Costos", NEG, fill=GRIS)
     fila(20, "Transporte de instalaciones", lambda c, p, m: f"={c}6*{P['Costo de cada instalación (transporte)']}", fuente=VERDE)
