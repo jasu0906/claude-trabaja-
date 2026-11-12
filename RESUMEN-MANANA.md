@@ -32,7 +32,7 @@ Elegiste "impacto primero", y eso es lo que este plan persigue. Si tu prioridad 
 
 **Guía para ti**
 
-- `guia/como-funciona-mi-negocio.md`: resumen de una página, siete áreas explicadas con ejemplos, glosario de 55 términos y recursos gratuitos.
+- `guia/como-funciona-mi-negocio.md`: resumen de una página, siete áreas explicadas con ejemplos, glosario de 57 términos y recursos gratuitos.
 
 **Presentaciones**
 
