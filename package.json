@@ -1,0 +1,12 @@
+{
+  "name": "reponer",
+  "private": true,
+  "description": "Herramienta gratuita de reposición para bodegas y abastos",
+  "scripts": {
+    "build": "./build.sh",
+    "test": "./build.sh && node tests/prueba.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.48.0"
+  }
+}

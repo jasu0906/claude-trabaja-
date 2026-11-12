@@ -1,0 +1,4 @@
+{"name":"Reponer","short_name":"Reponer","description":"Qué pedir hoy, cuánto y a quién. Para bodegas y abastos.","lang":"es","start_url":"./","scope":"./","display":"standalone",
+ "background_color":"#f3f6f4","theme_color":"#0b5d4b",
+ "icons":[{"src":"icon-192.png","sizes":"192x192","type":"image/png"},{"src":"icon-512.png","sizes":"512x512","type":"image/png"},
+          {"src":"icon.svg","sizes":"any","type":"image/svg+xml"}]}
