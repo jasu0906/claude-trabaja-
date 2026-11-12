@@ -139,6 +139,14 @@ function servir() {
   // 16 vendidas en 4 días = 4/día; pedir 4*(2+7)-4 = 32 -> 40 por empaque de 20; 40 x 1,10 = $44 < mínimo de $50
   const vista = await p2.locator('#vista').innerText();
   assert.ok(vista.includes('Faltan $6.00 para el mínimo de $50.00'), vista);
+  // tras 5 días sin contar aparece el aviso, y lleva a la pestaña Conteo
+  assert.strictEqual(await p2.locator('#avisoConteo').isHidden(), true);
+  await p2.evaluate(() => { window.__hoy = '2026-11-21'; pintar(); });
+  assert.ok((await p2.locator('#avisoConteo').innerText()).includes('hace 5 días'));
+  await p2.click('#avisoConteo button');
+  assert.strictEqual(await p2.locator('#avisoConteo').isHidden(), true);
+  assert.ok(await p2.locator('[data-acc="guardarConteo"]').isVisible());
+  await p2.evaluate(() => { window.__hoy = '2026-11-16'; });
   // un precio viejo se corrige solo al volver a abrir
   await p2.evaluate(() => { S.productos[0].costo = 9; guardar(); });
   await p2.addInitScript(() => { window.__hoy = '2026-11-16'; });

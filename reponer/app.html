@@ -97,6 +97,7 @@ textarea{font:12px var(--mono);min-height:90px}
     <span>Estás viendo una bodega de ejemplo. Los productos y precios no son reales.</span>
     <button class="mini" data-acc="empezar">Empezar con mi bodega</button>
   </div>
+  <div class="aviso" id="avisoConteo" hidden></div>
   <div class="caja" id="catalogoAviso" hidden></div>
   <div class="resumen" id="resumen"></div>
   <nav role="tablist">
@@ -111,7 +112,7 @@ textarea{font:12px var(--mono);min-height:90px}
 
 <script>
 'use strict';
-var KEY='reponer.v1', SEGURIDAD=2;
+var KEY='reponer.v1', SEGURIDAD=2, DIAS_AVISO=5;
 function hoyISO(){ if(window.__hoy) return window.__hoy; var d=new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset()); return d.toISOString().slice(0,10); }
 function sumarDias(iso,n){ var d=new Date(iso+'T00:00:00Z'); d.setUTCDate(d.getUTCDate()+n); return d.toISOString().slice(0,10); }
 function dias(a,b){ return Math.round((Date.parse(b+'T00:00:00Z')-Date.parse(a+'T00:00:00Z'))/864e5); }
@@ -257,6 +258,9 @@ function pintar(){
   var h=hoyISO(), an=S.productos.map(function(p){return {p:p,a:analizar(p,S,h)};});
   document.getElementById('bodega').textContent=S.bodega||'';
   document.getElementById('avisoEjemplo').hidden=!S.ejemplo;
+  var sinContar=null; an.forEach(function(x){ if(x.p.conteos.length&&(sinContar===null||x.a.pasados<sinContar)) sinContar=x.a.pasados; });
+  var ac=document.getElementById('avisoConteo'); ac.hidden=!(sinContar!==null&&sinContar>=DIAS_AVISO&&!S.ejemplo&&tab!=='conteo');
+  if(!ac.hidden) ac.innerHTML='<span>Tu último conteo fue hace '+sinContar+' días. Cuenta hoy para que el pedido sea confiable.</span><button class="mini" data-tab="conteo">Contar ahora</button>';
   var ped=an.filter(function(x){return x.a.estado==='agotado'||x.a.estado==='pedir';});
   var costo=ped.reduce(function(s,x){return s+x.a.sugerido*x.p.costo;},0);
   document.getElementById('resumen').innerHTML=

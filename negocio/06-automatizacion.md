@@ -148,7 +148,8 @@ Crea estos eventos que se repiten:
 4. Toca **Generar archivo** y luego **Copiar contenido**.
 5. En GitHub, entra a la carpeta `catalogos`, toca Add file → Create new file, ponle el nombre que indica la herramienta (por ejemplo `lacentral.json`), pega y guarda en `main`.
 6. En dos minutos el enlace funciona: `jasu0906.github.io/claude-trabaja-/?d=lacentral`.
-7. Para cambiar precios, repite los pasos 1 a 4 y reemplaza el contenido del mismo archivo. Cada bodega recibe los precios nuevos la próxima vez que abre la app con conexión.
+7. Para el volante con su código QR, abre una sesión con Claude y pide: "genera el volante de lacentral". Queda en `docs/volantes/`. Hay uno de muestra en `docs/volantes/ejemplo.pdf`.
+8. Para cambiar precios, repite los pasos 1 a 4 y reemplaza el contenido del mismo archivo. Cada bodega recibe los precios nuevos la próxima vez que abre la app con conexión.
 
 ## Lo que todavía no está automatizado
 
