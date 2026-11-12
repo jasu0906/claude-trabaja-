@@ -7,7 +7,7 @@ Lo que está listo para copiar y usar vive en `negocio/listo-para-usar/`:
 | `publicaciones.md` | 30 publicaciones para redes, con texto e idea visual |
 | `anuncios.md` | 3 anuncios escritos para Meta (Instagram y Facebook) |
 | `guion-de-ventas.md` | Qué decir en la visita, objeciones y cierre |
-| `mensajes-whatsapp.md` | 16 respuestas rápidas para clientes |
+| `mensajes-whatsapp.md` | 2 mensajes automáticos y 19 respuestas rápidas para clientes |
 
 Los textos de la página web ya están publicados como páginas reales: `negocios/index.html` y `distribuidores/index.html`.
 
