@@ -1,0 +1,15 @@
+{
+  "nombre": "Distribuidora de Ejemplo",
+  "whatsapp": "",
+  "entrega": 2,
+  "minimo": 50,
+  "actualizado": "2026-11-12",
+  "productos": [
+    { "n": "Harina de maíz 1 kg", "c": 1.10, "e": 20 },
+    { "n": "Arroz 1 kg", "c": 1.25, "e": 24 },
+    { "n": "Pasta 500 g", "c": 0.85, "e": 12 },
+    { "n": "Azúcar 1 kg", "c": 1.30, "e": 10 },
+    { "n": "Aceite 1 L", "c": 3.40, "e": 12 },
+    { "n": "Sal 1 kg", "c": 0.45, "e": 25 }
+  ]
+}

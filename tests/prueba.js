@@ -2,13 +2,31 @@
 const { chromium } = require('playwright');
 const path = require('path');
 const assert = require('assert');
+const http = require('http');
+const fs = require('fs');
+const RAIZ = path.resolve(__dirname, '..');
+const TIPOS = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.json': 'application/json', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
+// Servidor local: los catálogos se piden con fetch, que no funciona abriendo el archivo directamente.
+function servir() {
+  return new Promise(ok => {
+    const s = http.createServer((req, res) => {
+      let ruta = decodeURIComponent(req.url.split('?')[0]);
+      if (ruta.endsWith('/')) ruta += 'index.html';
+      const f = path.join(RAIZ, ruta);
+      if (!f.startsWith(RAIZ) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); res.end(); return; }
+      res.writeHead(200, { 'Content-Type': TIPOS[path.extname(f)] || 'application/octet-stream' }); res.end(fs.readFileSync(f));
+    }).listen(0, '127.0.0.1', () => ok(s));
+  });
+}
 (async () => {
+  const servidor = await servir();
+  const BASE = 'http://127.0.0.1:' + servidor.address().port + '/';
   const b = await chromium.launch();
   const pg = await b.newPage({ viewport: { width: 400, height: 800 } });
   const errores = [];
   pg.on('pageerror', e => errores.push(e.message));
   await pg.addInitScript(() => { window.__hoy = '2026-11-12'; });
-  await pg.goto('file://' + path.resolve(__dirname, '../index.html'));
+  await pg.goto(BASE);
 
   // 1. Cálculo puro
   const r = await pg.evaluate(() => {
@@ -103,9 +121,66 @@ const assert = require('assert');
   assert.strictEqual(at.estado, 'camino'); assert.strictEqual(at.atraso, 3);
   assert.ok(await pg.evaluate(() => normalizar({ productos: [] }).registro.pedidos === 0));
 
-  // 9. Sin desbordes horizontales
+  // 9. Catálogo de distribuidora: se ofrece, se agrega y reemplaza la bodega de ejemplo
+  const ctx2 = await b.newContext({ viewport: { width: 400, height: 800 } });
+  const p2 = await ctx2.newPage();
+  p2.on('pageerror', e => errores.push(e.message));
+  await p2.addInitScript(() => { window.__hoy = '2026-11-12'; });
+  await p2.goto(BASE + '?d=ejemplo');
+  await p2.waitForSelector('#catalogoAviso:not([hidden])');
+  assert.ok((await p2.locator('#catalogoAviso').innerText()).includes('Distribuidora de Ejemplo'));
+  await p2.click('[data-acc="catSi"]');
+  let st = await p2.evaluate(() => ({ n: S.productos.length, ej: S.ejemplo, min: S.minimos['Distribuidora de Ejemplo'], cat: Object.keys(S.catalogos), url: location.search, prov: S.productos[0].proveedor, emp: S.productos[0].empaque }));
+  assert.deepStrictEqual(st, { n: 6, ej: false, min: 50, cat: ['ejemplo'], url: '', prov: 'Distribuidora de Ejemplo', emp: 20 });
+  // dos conteos -> pedido por debajo del mínimo muestra el aviso
+  await p2.fill('[data-hay]', '20'); await p2.click('[data-acc="guardarConteo"]');
+  await p2.evaluate(() => { window.__hoy = '2026-11-16'; });
+  await p2.click('[data-tab="conteo"]'); await p2.fill('[data-hay]', '4'); await p2.click('[data-acc="guardarConteo"]');
+  // 16 vendidas en 4 días = 4/día; pedir 4*(2+7)-4 = 32 -> 40 por empaque de 20; 40 x 1,10 = $44 < mínimo de $50
+  const vista = await p2.locator('#vista').innerText();
+  assert.ok(vista.includes('Faltan $6.00 para el mínimo de $50.00'), vista);
+  // un precio viejo se corrige solo al volver a abrir
+  await p2.evaluate(() => { S.productos[0].costo = 9; guardar(); });
+  await p2.addInitScript(() => { window.__hoy = '2026-11-16'; });
+  await p2.reload();
+  await p2.waitForFunction(() => S.productos[0].costo === 1.1);
+  // un enlace inválido no rompe nada
+  await p2.goto(BASE + '?d=no-existe'); await p2.waitForTimeout(300);
+  assert.strictEqual(await p2.locator('#catalogoAviso').isHidden(), true);
+
+  // 10. Herramienta para armar catálogos
+  await p2.goto(BASE + 'catalogo.html');
+  await p2.fill('#nombre', 'Distribuidora Ñandú');
+  assert.strictEqual(await p2.inputValue('#slug'), 'distribuidora-nandu');
+  await p2.fill('#lineas', 'Arroz 1 kg; 1,25; 24\nSal 1 kg\t0.45\t25\nmala; x; 1');
+  await p2.click('#generar');
+  assert.ok((await p2.locator('#error').innerText()).includes('Línea 3'));
+  await p2.fill('#lineas', 'Arroz 1 kg; 1,25; 24\nSal 1 kg\t0.45\t25');
+  await p2.click('#generar');
+  const cat = JSON.parse(await p2.inputValue('#salida'));
+  assert.deepStrictEqual(cat.productos, [{ n: 'Arroz 1 kg', c: 1.25, e: 24 }, { n: 'Sal 1 kg', c: 0.45, e: 25 }]);
+  assert.ok((await p2.locator('#enlace').innerText()).endsWith('/?d=distribuidora-nandu'));
+
+  // 11. Páginas informativas: sin WhatsApp configurado no hay botón de contacto roto
+  for (const ruta of ['negocios/', 'distribuidores/']) {
+    await p2.goto(BASE + ruta);
+    assert.strictEqual(await p2.locator('a[data-wa]:visible').count(), 0, ruta);
+    assert.ok(await p2.locator('[data-sin-contacto]').first().isVisible(), ruta);
+    assert.ok(await p2.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), 'desborde ' + ruta);
+    await p2.evaluate(() => { window.REPONER_CONTACTO = { whatsapp: '58 412-1234567' }; });
+    await p2.addScriptTag({ url: BASE + 'sitio.js' });
+    assert.ok((await p2.locator('a[data-wa]').first().getAttribute('href')).startsWith('https://wa.me/584121234567?text=Hola'));
+  }
+  // los catálogos publicados son válidos
+  for (const f of fs.readdirSync(path.join(RAIZ, 'catalogos'))) {
+    const c = JSON.parse(fs.readFileSync(path.join(RAIZ, 'catalogos', f), 'utf8'));
+    assert.ok(/^[a-z0-9-]{1,40}\.json$/.test(f) && c.nombre && c.productos.every(x => x.n && x.c >= 0 && x.e >= 1), f);
+  }
+  await ctx2.close();
+
+  // 12. Sin desbordes horizontales
   assert.ok(await pg.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), 'desborde');
   assert.deepStrictEqual(errores, []);
-  await b.close();
+  await b.close(); servidor.close();
   console.log('OK: todas las pruebas pasaron');
 })().catch(e => { console.error('FALLO:', e.message); process.exit(1); });

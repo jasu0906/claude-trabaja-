@@ -11,7 +11,7 @@ cd "$(dirname "$0")"
     '<meta property="og:description" content="Qué pedir hoy, cuánto y a quién. Gratis y sin internet, para bodegas y abastos.">' \
     '<meta property="og:type" content="website">' \
     '<link rel="apple-touch-icon" href="icon-192.png">' \
-    '<link rel="manifest" href="manifest.webmanifest">' '<link rel="icon" href="icon.svg">' '</head>' '<body>'
+    '<link rel="manifest" href="manifest.webmanifest">' '<link rel="icon" href="icon.svg">' '</head>' '<body>' '<script>window.REPONER_SITIO=1</script>'
   cat reponer/app.html
   printf '%s\n' "<script>if('serviceWorker' in navigator && location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(function(){});}</script>" '</body>' '</html>'
 } > index.html
