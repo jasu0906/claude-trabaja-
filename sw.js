@@ -1,6 +1,6 @@
 // Guarda la app en el teléfono para que abra sin internet.
-var CACHE = 'reponer-v1';
-var ARCHIVOS = ['./', 'index.html', 'manifest.webmanifest', 'icon.svg'];
+var CACHE = 'reponer-v2';
+var ARCHIVOS = ['./', 'index.html', 'manifest.webmanifest', 'icon.svg', 'icon-192.png'];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(ARCHIVOS); }).then(function () { return self.skipWaiting(); }));
 });

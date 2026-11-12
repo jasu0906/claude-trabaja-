@@ -59,6 +59,13 @@ section{display:flex;flex-direction:column;gap:12px}
 .pronto{background:var(--gris-fondo);color:var(--tinta)}
 .bien{background:var(--verde-fondo);color:var(--verde)}
 .sin{background:var(--gris-fondo);color:var(--tenue)}
+.camino{background:var(--marca);color:var(--marca-tinta)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{font:500 .85rem var(--fuente);border:1px dashed var(--marca);background:transparent;color:var(--marca);border-radius:99px;padding:6px 11px;cursor:pointer}
+summary{cursor:pointer;font-weight:600;color:var(--marca)}
+details{display:flex;flex-direction:column;gap:10px}
+details[open] summary{margin-bottom:10px}
+ol.pasos{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px;font-size:.9rem;color:var(--tenue)}
 .pie{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 12px;background:var(--fondo);border-top:1px solid var(--linea)}
 .total{font-variant-numeric:tabular-nums;font-weight:700}
 .total small{font-weight:400;color:var(--tenue)}
@@ -114,9 +121,10 @@ function bs(n){ return 'Bs '+n.toLocaleString('es-VE',{minimumFractionDigits:2,m
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
 
 /* Cálculo: el ritmo de venta sale de los conteos (lo que había + lo que llegó − lo que hay) entre los días pasados. */
-function analizar(p,cfg,hoy){
+function calcular(p,cfg,hoy){
   var c=p.conteos||[], ult=c[c.length-1];
-  var r={estado:'sin',ritmo:null,stock:ult?ult.stock:0,cobertura:null,sugerido:0,pasados:ult?Math.max(0,dias(ult.fecha,hoy)):null};
+  var extra=p.porRecibir||0;
+  var r={estado:'sin',ritmo:null,stock:(ult?ult.stock:0)+extra,cobertura:null,sugerido:0,pasados:ult?Math.max(0,dias(ult.fecha,hoy)):null};
   if(!ult) return r;
   var cons=0,d=0;
   for(var i=Math.max(1,c.length-4);i<c.length;i++){
@@ -124,12 +132,12 @@ function analizar(p,cfg,hoy){
     cons+=Math.max(0,c[i-1].stock+(c[i].recibido||0)-c[i].stock); d+=dd;
   }
   var emp=Math.max(1,p.empaque||1);
-  if(d===0){ if(ult.stock<=0){ r.estado='agotado'; r.sugerido=emp; } return r; }
+  if(d===0){ if(ult.stock+extra<=0){ r.estado='agotado'; r.sugerido=emp; } return r; }
   var ritmo=cons/d; r.ritmo=ritmo;
-  var stock=Math.max(0,ult.stock-ritmo*r.pasados); r.stock=stock;
+  var stock=Math.max(0,ult.stock-ritmo*r.pasados)+extra; r.stock=stock;
   r.cobertura=ritmo>0?stock/ritmo:Infinity;
   var espera=(p.entrega||0)+SEGURIDAD;
-  if(stock<=0 && (ritmo>0||ult.stock<=0)) r.estado='agotado';
+  if(stock<=0) r.estado='agotado';
   else if(ritmo>0 && stock<=ritmo*espera) r.estado='pedir';
   else if(ritmo>0 && stock<=ritmo*(espera+3)) r.estado='pronto';
   else r.estado='bien';
@@ -140,11 +148,21 @@ function analizar(p,cfg,hoy){
   return r;
 }
 
+/* Un producto ya pedido no se vuelve a sugerir hasta que llegue o se cancele. */
+function analizar(p,cfg,hoy){
+  var r=calcular(p,cfg,hoy);
+  if(p.pendiente){ r.previo=r.estado; r.estado='camino'; r.sugerido=0; r.atraso=dias(p.pendiente.fecha,hoy)-((p.entrega||0)+SEGURIDAD); }
+  return r;
+}
+var RAPIDOS=['Harina de maíz 1 kg','Arroz 1 kg','Pasta 500 g','Aceite 1 L','Azúcar 1 kg','Café 250 g','Sal 1 kg','Margarina 500 g','Mayonesa','Salsa de tomate',
+  'Sardinas en lata','Atún en lata','Caraotas 500 g','Lentejas 500 g','Leche en polvo','Huevos (cartón de 30)','Harina de trigo 1 kg','Avena','Refresco 2 L','Agua 1,5 L',
+  'Galletas','Jabón en barra','Detergente','Papel higiénico','Crema dental','Cloro'];
+
 function ejemplo(){
   var h=hoyISO(), f=[sumarDias(h,-14),sumarDias(h,-7),sumarDias(h,-2)];
   function p(nombre,prov,costo,entrega,emp,s,rec){ return {id:uid(),nombre:nombre,proveedor:prov,costo:costo,entrega:entrega,empaque:emp,
     conteos:[{fecha:f[0],stock:s[0],recibido:0},{fecha:f[1],stock:s[1],recibido:rec[0]},{fecha:f[2],stock:s[2],recibido:rec[1]}]}; }
-  return {ejemplo:true,bodega:'Bodega de ejemplo',tasa:0,cobertura:7,telefonos:{},productos:[
+  return {ejemplo:true,bodega:'Bodega de ejemplo',tasa:0,cobertura:7,telefonos:{},registro:{inicio:f[0],pedidos:0},productos:[
     p('Harina de maíz 1 kg','Distribuidora La Central',1.10,2,20,[40,22,6],[20,20]),
     p('Arroz 1 kg','Distribuidora La Central',1.25,2,24,[30,34,20],[24,0]),
     p('Pasta 500 g','Distribuidora La Central',0.85,2,12,[24,15,9],[0,0]),
@@ -155,14 +173,15 @@ function ejemplo(){
     p('Jabón en barra','Mayorista El Trigal',0.70,4,24,[30,28,27],[0,0])
   ]};
 }
-function vacio(){ return {ejemplo:false,bodega:'',tasa:0,cobertura:7,telefonos:{},productos:[]}; }
+function vacio(){ return {ejemplo:false,bodega:'',tasa:0,cobertura:7,telefonos:{},registro:{inicio:hoyISO(),pedidos:0},productos:[]}; }
+function normalizar(o){ o.telefonos=o.telefonos||{}; o.cobertura=o.cobertura||7; o.registro=o.registro||{inicio:hoyISO(),pedidos:0}; return o; }
 
 var S, tab='pedido', editando=null, borrando=null;
-function cargar(){ try{ var t=localStorage.getItem(KEY); if(t){ var o=JSON.parse(t); if(o&&Array.isArray(o.productos)) return o; } }catch(e){} return ejemplo(); }
+function cargar(){ try{ var t=localStorage.getItem(KEY); if(t){ var o=JSON.parse(t); if(o&&Array.isArray(o.productos)) return normalizar(o); } }catch(e){} return ejemplo(); }
 function guardar(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
 var tt; function toast(m){ var t=document.getElementById('toast'); t.textContent=m; t.hidden=false; clearTimeout(tt); tt=setTimeout(function(){t.hidden=true;},2600); }
 function dinero(n){ return usd(n)+(S.tasa>0?' <small>· '+bs(n*S.tasa)+'</small>':''); }
-function etiqueta(e){ return {agotado:'Agotado',pedir:'Pedir hoy',pronto:'Pedir esta semana',bien:'Bien',sin:'Falta otro conteo'}[e]; }
+function etiqueta(e){ return {agotado:'Agotado',pedir:'Pedir hoy',pronto:'Pedir esta semana',bien:'Bien',camino:'En camino',sin:'Falta otro conteo'}[e]; }
 function cubre(a){ if(a.cobertura==null) return ''; if(a.cobertura===Infinity) return 'sin ventas recientes'; return 'alcanza para '+(a.cobertura<1?'menos de 1 día':Math.round(a.cobertura)+(Math.round(a.cobertura)===1?' día':' días')); }
 
 function pedidos(){
@@ -175,6 +194,15 @@ function mensaje(prov,items){
   return 'Hola, '+prov+'. Pedido'+(S.bodega?' de '+S.bodega:'')+':\n'+l.join('\n')+'\nTotal estimado: '+usd(total);
 }
 
+function informe(){
+  var h=hoyISO(), n=0, ceros=0, ult='';
+  S.productos.forEach(function(p){ p.conteos.forEach(function(c,i){ n++; if(c.stock<=0&&i>0) ceros++; if(c.fecha>ult) ult=c.fecha; }); });
+  var porPedir=S.productos.filter(function(p){ var e=analizar(p,S,h).estado; return e==='agotado'||e==='pedir'; }).length;
+  return 'Informe Reponer'+(S.bodega?' - '+S.bodega:'')+'\nFecha: '+h+'\nEn uso desde: '+S.registro.inicio+' ('+Math.max(0,dias(S.registro.inicio,h))+' días)'+
+    '\nProductos: '+S.productos.length+'\nConteos anotados: '+n+(ult?' (último: '+ult+')':'')+'\nPedidos marcados como hechos: '+S.registro.pedidos+
+    '\nVeces que un producto se contó en cero: '+ceros+'\nProductos por pedir hoy: '+porPedir;
+}
+
 function pintar(){
   var h=hoyISO(), an=S.productos.map(function(p){return {p:p,a:analizar(p,S,h)};});
   document.getElementById('bodega').textContent=S.bodega||'';
@@ -183,7 +211,7 @@ function pintar(){
   var costo=ped.reduce(function(s,x){return s+x.a.sugerido*x.p.costo;},0);
   document.getElementById('resumen').innerHTML=
     '<div><b>'+ped.length+'</b><small>productos por pedir hoy</small></div>'+
-    '<div><b>'+an.filter(function(x){return x.a.estado==='agotado';}).length+'</b><small>agotados</small></div>'+
+    '<div><b>'+an.filter(function(x){return x.a.estado==='agotado'||x.a.previo==='agotado';}).length+'</b><small>agotados</small></div>'+
     '<div><b>'+usd(costo)+'</b><small>costo del pedido'+(S.tasa>0?' · '+bs(costo*S.tasa):'')+'</small></div>';
   [].forEach.call(document.querySelectorAll('nav button'),function(b){ b.setAttribute('aria-selected',b.dataset.tab===tab); });
   var v=document.getElementById('vista'), html='';
@@ -191,16 +219,21 @@ function pintar(){
   if(tab==='pedido'){
     var g=pedidos(), ks=Object.keys(g).sort();
     if(!S.productos.length) html='<div class="caja"><h2>Todavía no hay productos</h2><p class="nota">Ve a Productos y agrega los 10 que más vendes. Con dos conteos, Reponer calcula qué pedir.</p></div>';
-    else if(!ks.length) html='<div class="caja"><h2>Hoy no hace falta pedir nada</h2><p class="nota">Vuelve a contar en unos días para mantener el cálculo al día.</p></div>';
+    else if(!ks.length) html='<div class="caja"><h2>Hoy no hace falta pedir nada más</h2><p class="nota">Vuelve a contar en unos días para mantener el cálculo al día.</p></div>';
     ks.forEach(function(k){
       var t=0;
       html+='<div class="grupo"><h3>'+esc(k)+'</h3>'+g[k].map(function(x){ t+=x.a.sugerido*x.p.costo;
         return '<div class="fila"><div class="txt"><b>'+esc(x.p.nombre)+'</b><small><span class="pill '+x.a.estado+'">'+etiqueta(x.a.estado)+'</span> '+(x.a.estado==='agotado'?'no queda nada':'quedan ~'+Math.round(x.a.stock)+', '+cubre(x.a))+'</small></div>'+
           '<div class="cant">'+x.a.sugerido+'<small>'+usd(x.a.sugerido*x.p.costo)+'</small></div></div>'; }).join('')+
         '<div class="pie"><span class="total">'+dinero(t)+'</span><span class="botones">'+
-        '<button class="b sec" data-acc="copiar" data-prov="'+esc(k)+'">Copiar pedido</button>'+
+        '<button class="b sec" data-acc="yaPedi" data-prov="'+esc(k)+'">Ya lo pedí</button>'+'<button class="b sec" data-acc="copiar" data-prov="'+esc(k)+'">Copiar pedido</button>'+
         '<a class="b" target="_blank" rel="noopener" href="https://wa.me/'+esc(String(S.telefonos[k]||'').replace(/\D/g,''))+'?text='+encodeURIComponent(mensaje(k,g[k]))+'">Enviar por WhatsApp</a></span></div></div>';
     });
+    var cam=an.filter(function(x){return x.a.estado==='camino';});
+    if(cam.length) html+='<div class="grupo"><h3>En camino</h3>'+cam.map(function(x){ var q=x.p.pendiente;
+      return '<div class="fila"><div class="txt"><b>'+esc(x.p.nombre)+'</b><small>'+q.cantidad+' pedidas el '+q.fecha+' · '+esc(x.p.proveedor||'Sin proveedor')+
+        (x.a.atraso>0?' · <span class="pill agotado">debió llegar hace '+x.a.atraso+(x.a.atraso===1?' día':' días')+'</span>':'')+'</small></div>'+
+        '<span class="botones"><button class="mini" data-acc="llego" data-id="'+x.p.id+'">Llegó</button><button class="mini" data-acc="cancelarPed" data-id="'+x.p.id+'">Cancelar</button></span></div>'; }).join('')+'</div>';
     var pr=an.filter(function(x){return x.a.estado==='pronto';});
     if(pr.length) html+='<div class="grupo"><h3>Se acaban esta semana</h3>'+pr.map(function(x){ return '<div class="fila"><div class="txt"><b>'+esc(x.p.nombre)+'</b><small>'+esc(x.p.proveedor||'Sin proveedor')+' · '+cubre(x.a)+'</small></div><div class="cant">~'+Math.round(x.a.stock)+'</div></div>'; }).join('')+'</div>';
     if(S.productos.length) html+='<p class="nota">La cantidad cubre los días de entrega del proveedor más '+S.cobertura+' días de venta, redondeada al empaque. Es una estimación a partir de tus conteos.</p>';
@@ -212,7 +245,7 @@ function pintar(){
       an.map(function(x){ var u=x.p.conteos[x.p.conteos.length-1];
         return '<div class="fila"><div class="txt"><b>'+esc(x.p.nombre)+'</b><small>'+(u?'último conteo: '+u.stock+' ('+(x.a.pasados===0?'hoy':'hace '+x.a.pasados+(x.a.pasados===1?' día':' días'))+')':'sin conteos')+'</small></div>'+
           '<label>Hay <input id="hay-'+x.p.id+'" inputmode="decimal" data-hay="'+x.p.id+'"></label>'+
-          '<label>Llegó <input id="llego-'+x.p.id+'" inputmode="decimal" data-llego="'+x.p.id+'"></label></div>'; }).join('')+
+          '<label>Llegó <input id="llego-'+x.p.id+'" inputmode="decimal" data-llego="'+x.p.id+'" value="'+(x.p.porRecibir||'')+'"></label></div>'; }).join('')+
       '</div><div class="botones"><button class="b" data-acc="guardarConteo">Guardar conteo</button></div>';
   }
 
@@ -227,6 +260,10 @@ function pintar(){
       (e?'':'<label>Cuántas hay hoy<input id="pStock" inputmode="decimal"></label>')+
       '<div class="botones ancho" style="grid-column:1/-1"><button class="b" type="submit">'+(e?'Guardar cambios':'Agregar')+'</button>'+(e?'<button class="b sec" type="button" data-acc="cancelar">Cancelar</button>':'')+'</div>'+
       '</form><datalist id="provs">'+proveedores().map(function(n){return '<option value="'+esc(n)+'">';}).join('')+'</datalist></div>';
+    var ya={}; S.productos.forEach(function(p){ ya[p.nombre.toLowerCase()]=1; });
+    var rap=RAPIDOS.filter(function(n){return !ya[n.toLowerCase()];});
+    if(!e&&rap.length) html+='<div class="caja"><details'+(S.productos.length?'':' open')+'><summary>Agregar de la lista rápida</summary><p class="nota">Toca los que vendes. Después edita cada uno para poner proveedor, costo y cuántas hay.</p>'+
+      '<div class="chips" style="margin-top:10px">'+rap.map(function(n){return '<button data-acc="rapido" data-nombre="'+esc(n)+'">+ '+esc(n)+'</button>';}).join('')+'</div></details></div>';
     if(an.length) html+='<div class="grupo">'+an.map(function(x){
       return '<div class="fila"><div class="txt"><b>'+esc(x.p.nombre)+'</b><small><span class="pill '+x.a.estado+'">'+etiqueta(x.a.estado)+'</span> '+esc(x.p.proveedor||'Sin proveedor')+' · '+usd(x.p.costo)+
         (x.a.ritmo!=null?' · vende '+(x.a.ritmo*7).toFixed(1)+' por semana':'')+'</small></div>'+
@@ -246,6 +283,9 @@ function pintar(){
     html+='<div class="botones"><button class="b" data-acc="guardarAjustes">Guardar ajustes</button></div>'+
       '<div class="caja"><h2>Respaldo</h2><p class="nota">Tus datos viven solo en este teléfono. Copia el respaldo y guárdalo en un chat de WhatsApp contigo mismo. Para recuperarlo, pégalo aquí.</p>'+
       '<textarea id="respaldo" aria-label="Respaldo"></textarea><div class="botones"><button class="b sec" data-acc="copiarResp">Copiar respaldo</button><button class="b sec" data-acc="restaurar">Restaurar lo pegado</button></div></div>'+
+      '<div class="caja"><h2>Informe de uso</h2><p class="nota">Resume cuánto se ha usado Reponer en esta bodega. No incluye precios ni nombres de productos.</p>'+
+      '<textarea id="informe" aria-label="Informe de uso" readonly>'+esc(informe())+'</textarea><div class="botones"><button class="b sec" data-acc="copiarInforme">Copiar informe</button></div></div>'+
+      '<div class="caja"><h2>Tenerla a la mano</h2><ol class="pasos"><li>Abre el menú del navegador (los tres puntos, o Compartir en iPhone).</li><li>Toca "Agregar a pantalla de inicio".</li><li>Desde ahí abre aunque no haya internet.</li></ol></div>'+
       '<div class="botones"><button class="b pel" data-acc="borrarTodo">'+(borrando==='todo'?'¿Seguro? Se borra todo':'Borrar todos los datos')+'</button></div>';
   }
   v.innerHTML=html;
@@ -261,6 +301,21 @@ document.addEventListener('click',function(ev){
   if(a!=='borrar'&&a!=='borrarTodo') borrando=null;
   if(a==='empezar'){ S=vacio(); guardar(); tab='productos'; toast('Listo. Agrega tu primer producto.'); }
   else if(a==='copiar'){ copiar(mensaje(t.dataset.prov,pedidos()[t.dataset.prov]),'Pedido copiado'); return; }
+  else if(a==='yaPedi'){
+    var its=pedidos()[t.dataset.prov]||[], h0=hoyISO();
+    its.forEach(function(x){ x.p.pendiente={fecha:h0,cantidad:x.a.sugerido}; });
+    S.registro.pedidos++; guardar(); toast('Anotado. Cuando llegue, toca "Llegó".');
+  }
+  else if(a==='llego'||a==='cancelarPed'){
+    var pp=S.productos.filter(function(x){return x.id===id;})[0];
+    if(pp&&pp.pendiente){ if(a==='llego') pp.porRecibir=(pp.porRecibir||0)+pp.pendiente.cantidad; delete pp.pendiente; guardar();
+      toast(a==='llego'?'Mercancía sumada. Cuenta el estante cuando puedas.':'Pedido cancelado'); }
+  }
+  else if(a==='rapido'){
+    S.productos.push({id:uid(),nombre:t.dataset.nombre,proveedor:'',costo:0,entrega:2,empaque:1,conteos:[]});
+    S.ejemplo=false; guardar(); toast('Agregado: '+t.dataset.nombre);
+  }
+  else if(a==='copiarInforme'){ copiar(informe(),'Informe copiado'); return; }
   else if(a==='guardarConteo'){
     var h=hoyISO(), n=0;
     S.productos.forEach(function(p){
@@ -268,7 +323,8 @@ document.addEventListener('click',function(ev){
       var st=num(hay,null); if(st==null) return;
       var rec=num(document.querySelector('[data-llego="'+p.id+'"]').value,0), u=p.conteos[p.conteos.length-1];
       if(u&&u.fecha===h){ u.stock=st; u.recibido=(u.recibido||0)+rec; } else p.conteos.push({fecha:h,stock:st,recibido:rec});
-      if(p.conteos.length>12) p.conteos.shift(); n++;
+      p.porRecibir=0; if(rec>0) delete p.pendiente;
+      if(p.conteos.length>60) p.conteos.shift(); n++;
     });
     if(!n){ toast('Escribe cuántas hay en al menos un producto.'); return; }
     guardar(); tab='pedido'; toast('Conteo guardado: '+n+(n===1?' producto':' productos'));
@@ -285,7 +341,7 @@ document.addEventListener('click',function(ev){
   else if(a==='copiarResp'){ var j=JSON.stringify(S); document.getElementById('respaldo').value=j; copiar(j,'Respaldo copiado'); return; }
   else if(a==='restaurar'){
     try{ var o=JSON.parse(document.getElementById('respaldo').value); if(!o||!Array.isArray(o.productos)) throw 0;
-      o.telefonos=o.telefonos||{}; o.cobertura=o.cobertura||7; S=o; guardar(); tab='pedido'; toast('Respaldo restaurado'); }
+      S=normalizar(o); guardar(); tab='pedido'; toast('Respaldo restaurado'); }
     catch(e){ toast('Ese texto no es un respaldo de Reponer.'); return; }
   }
   else if(a==='borrarTodo'){ if(borrando!=='todo'){ borrando='todo'; } else { S=vacio(); borrando=null; guardar(); toast('Datos borrados'); } }

@@ -73,7 +73,37 @@ const assert = require('assert');
   await pg.click('[data-acc="restaurar"]');
   assert.strictEqual(await pg.evaluate(() => S.productos.length), 1);
 
-  // 6. Sin desbordes horizontales
+  // 6. Pedido en camino: deja de sugerirse, y al llegar se suma al inventario
+  await pg.click('[data-tab="pedido"]');
+  await pg.click('[data-acc="yaPedi"]');
+  assert.ok((await pg.locator('#vista').innerText()).includes('EN CAMINO'));
+  assert.strictEqual(await pg.locator('a.b').count(), 0, 'ya no se sugiere');
+  assert.ok((await pg.locator('.resumen').innerText()).startsWith('0'));
+  await pg.click('[data-acc="llego"]');
+  const tras = await pg.evaluate(() => ({ a: analizar(S.productos[0], S, hoyISO()), p: S.productos[0] }));
+  assert.strictEqual(tras.p.porRecibir, 40); assert.strictEqual(tras.a.stock, 45); assert.strictEqual(tras.a.estado, 'bien');
+  await pg.click('[data-tab="conteo"]');
+  assert.strictEqual(await pg.inputValue('[data-llego]'), '40');
+  await pg.fill('[data-hay]', '44');
+  await pg.click('[data-acc="guardarConteo"]');
+  assert.strictEqual(await pg.evaluate(() => S.productos[0].porRecibir), 0);
+
+  // 7. Lista rápida e informe
+  await pg.click('[data-tab="productos"]');
+  await pg.click('details summary');
+  await pg.click('[data-nombre="Arroz 1 kg"]');
+  assert.strictEqual(await pg.evaluate(() => S.productos.length), 2);
+  assert.strictEqual(await pg.locator('[data-nombre="Arroz 1 kg"]').count(), 0);
+  await pg.click('[data-tab="ajustes"]');
+  const inf = await pg.inputValue('#informe');
+  assert.ok(inf.includes('Productos: 2') && inf.includes('Pedidos marcados como hechos: 1') && inf.includes('Conteos anotados: 2'), inf);
+
+  // 8. Estados atrasados y respaldo antiguo sin registro
+  const at = await pg.evaluate(() => analizar({ entrega: 2, pendiente: { fecha: '2026-11-10', cantidad: 5 }, conteos: [] }, { cobertura: 7 }, '2026-11-17'));
+  assert.strictEqual(at.estado, 'camino'); assert.strictEqual(at.atraso, 3);
+  assert.ok(await pg.evaluate(() => normalizar({ productos: [] }).registro.pedidos === 0));
+
+  // 9. Sin desbordes horizontales
   assert.ok(await pg.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), 'desborde');
   assert.deepStrictEqual(errores, []);
   await b.close();

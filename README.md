@@ -16,6 +16,7 @@ Ya existen apps de punto de venta (LoTuyo, Kyte, Loyverse). Exigen registrar cad
 2. Cada pocos días cuenta lo que hay en el estante y anota si llegó mercancía. Toma unos 2 minutos.
 3. Reponer calcula cuánto se vende por día y avisa qué se está acabando.
 4. La pestaña Pedido agrupa por proveedor, suma el costo en dólares y bolívares, y abre WhatsApp con el pedido escrito.
+5. Al tocar "Ya lo pedí", el producto pasa a "En camino" y deja de sugerirse. Si se atrasa, la app lo avisa. Al tocar "Llegó", la mercancía se suma al inventario.
 
 **El cálculo.** Ventas por día = (lo que había + lo que llegó − lo que hay) ÷ días entre conteos. Se pide cuando lo que queda no cubre los días de entrega más 2 días de seguridad. La cantidad sugerida cubre los días de entrega más 7 días de venta (configurable), redondeada al empaque del proveedor.
 
@@ -26,14 +27,25 @@ Ya existen apps de punto de venta (LoTuyo, Kyte, Loyverse). Exigen registrar cad
 | `reponer/app.html` | La aplicación completa. Es el único archivo que se edita. |
 | `build.sh` | Genera `index.html` a partir de `reponer/app.html`. |
 | `index.html`, `sw.js`, `manifest.webmanifest`, `icon.svg` | Versión instalable que abre sin internet. |
-| `tests/prueba.js` | Prueba automática del cálculo y del flujo completo: `node tests/prueba.js` |
+| `tests/prueba.js` | Prueba automática del cálculo y del flujo completo: `npm test` |
+| `.github/workflows/pruebas.yml` | Corre las pruebas en GitHub en cada cambio. |
+| `docs/semana-1.md` | Qué hacer cada día de la primera semana. |
+| `docs/guia-entrevista.md` | Preguntas para las visitas a bodegas. |
+| `docs/guia-instalacion.md` | Cómo dejar Reponer funcionando en una bodega en 20 minutos. |
+| `docs/volante.pdf` | Hoja para imprimir y dejar en la bodega, con código QR. |
+| `docs/seguimiento-piloto.csv` | Hoja de registro del piloto. Se abre con Excel o Google Sheets. |
+| `docs/privacidad.md` | Qué datos se guardan y dónde. |
 | `plan-negocio.md` | El plan anterior (servicio freelance), por si quieres ingresos mientras tanto. |
 
 ## Cómo ponerla en línea gratis
 
-1. Une esta rama a `main` en GitHub.
-2. En el repositorio: Settings → Pages → Source: "Deploy from a branch" → rama `main`, carpeta `/ (root)`.
-3. En un par de minutos queda en `https://jasu0906.github.io/claude-trabaja-/`. Ese es el enlace que le pasas al bodeguero. La primera vez necesita internet; después abre sin conexión.
+El código ya está en `main`. Falta un paso que solo puede hacer el dueño del repositorio:
+
+1. En GitHub, entra al repositorio → **Settings** → **Pages**.
+2. En "Source" elige **Deploy from a branch**. En "Branch" elige `main` y la carpeta `/ (root)`. Guarda.
+3. En un par de minutos queda en `https://jasu0906.github.io/claude-trabaja-/`. El código QR del volante apunta a esa dirección.
+
+El repositorio tiene que ser público para usar GitHub Pages con una cuenta gratuita. La primera vez que un teléfono abre el enlace necesita internet; después abre sin conexión.
 
 ## Lo que todavía no está probado
 
@@ -46,9 +58,9 @@ Ya existen apps de punto de venta (LoTuyo, Kyte, Loyverse). Exigen registrar cad
 
 | Semanas | Qué haces | Meta medible |
 |---|---|---|
-| 1 | Publicar en GitHub Pages. Visitar 10 bodegas de tu zona y ver cómo deciden qué comprar. No vendas nada: pregunta y observa. | 10 entrevistas anotadas; 3 bodegas dispuestas a probar |
-| 2 | Instalar Reponer en 3 bodegas, cargando tú los productos con el dueño. | 3 bodegas con 10+ productos cargados |
-| 3–4 | Volver dos veces por semana. Anotar qué no entienden y qué no usan. | 2 de 3 bodegas con 4+ conteos hechos por su cuenta |
+| 1 | Publicar en GitHub Pages, entrevistar 10 bodegas e instalar en 3. Detalle en `docs/semana-1.md`. | 10 entrevistas anotadas; 3 bodegas con 10 productos y 2 conteos |
+| 2 | Volver dos veces a cada bodega. Pedir el informe de uso. | 3 informes recibidos; lista de lo que confunde |
+| 3–4 | Seguir visitando dos veces por semana. Anotar qué no entienden y qué no usan. | 2 de 3 bodegas con 4+ conteos hechos por su cuenta |
 | 5–6 | Corregir lo que falló. Ampliar a 10 bodegas. | 10 bodegas activas; al menos 5 pedidos enviados por WhatsApp desde la app |
 | 7–8 | Medir: ¿se agotan menos productos que antes? Preguntar a 2 distribuidores si les sirve recibir pedidos ordenados. | Dato de agotados antes y después en 5 bodegas; 2 conversaciones con distribuidores |
 
