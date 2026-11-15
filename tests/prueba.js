@@ -71,6 +71,8 @@ function servir() {
   assert.deepStrictEqual(r.saneo[2].productos[0].conteos, [{ fecha: '2026-11-01', stock: 5, recibido: 0 }, { fecha: '2026-11-02', stock: 3, recibido: 0 }]);
   assert.strictEqual(r.saneo[2].productos[0].costo, 0.45);
 
+  assert.strictEqual(await pg.evaluate(() => document.documentElement.getAttribute('data-theme')), 'light', 'el fondo claro es el inicial');
+
   // 2. Bienvenida de tres pasos y bodega de ejemplo
   assert.ok(await pg.locator('#capa [role=dialog]').isVisible());
   assert.ok((await texto(pg, '#capa')).includes('Cuenta tu estante'));
@@ -271,6 +273,14 @@ function servir() {
     ['Bodega Vieja', 36.5, 3, '584120000000', 2, 20, 40, 'a1']);
   assert.strictEqual(cons.bodega, 'Bodega Vieja', 'abrir la app no toca lo guardado');
   assert.ok((await texto(p3, '#vista')).includes('EN CAMINO'));
+  // con el teléfono en modo oscuro, la app sigue abriendo en claro hasta que se elija otra cosa
+  const ctxO = await b.newContext({ viewport: { width: 400, height: 800 }, colorScheme: 'dark' });
+  const p5 = await ctxO.newPage(); vigilar(p5); await p5.goto(BASE);
+  assert.strictEqual(await p5.evaluate(() => getComputedStyle(document.body).backgroundColor), 'rgb(244, 246, 245)');
+  await p5.click('[data-acc="bienSaltar"]'); await p5.click('[data-tab="ajustes"]'); await p5.click('[data-tema="auto"]');
+  assert.strictEqual(await p5.evaluate(() => getComputedStyle(document.body).backgroundColor), 'rgb(11, 19, 17)');
+  await p5.reload();
+  assert.strictEqual(await p5.evaluate(() => getComputedStyle(document.body).backgroundColor), 'rgb(11, 19, 17)', 'la elección se recuerda');
   const p4 = await nuevo('2026-11-12', `localStorage.setItem('reponer.v1', '{dañado');`);
   await p4.goto(BASE);
   assert.ok(await p4.evaluate(() => S.ejemplo === true));

@@ -557,7 +557,8 @@ function vistaProductos(an){
   return html;
 }
 
-function temaActual(){ return leer(K_TEMA)||'auto'; }
+/* El fondo claro es el tema inicial; el oscuro y el automático (seguir al teléfono) se eligen en Ajustes. */
+function temaActual(){ var t=leer(K_TEMA); return t==='dark'||t==='auto'?t:'light'; }
 function vistaAjustes(){
   var pv=proveedores(), tema=temaActual(), wa=String(CONTACTO.whatsapp||'').replace(/\D/g,'');
   var html='<h1 class="vt" tabindex="-1">Ajustes</h1>'+
@@ -569,7 +570,7 @@ function vistaAjustes(){
   if(pv.length) html+='<div class="tarjeta p"><h2>WhatsApp de tus proveedores</h2><p class="nota">Con el número guardado, “Enviar por WhatsApp” abre directo su chat. Escríbelo con código de país.</p>'+pv.map(function(n,i){
     return '<label class="campo">'+esc(n)+'<input id="tel-'+i+'" inputmode="tel" autocomplete="off" data-tel="'+esc(n)+'" value="'+esc(S.telefonos[n]||'')+'" placeholder="58 412 0000000"></label>'; }).join('')+'</div>';
   html+='<div class="tarjeta p"><h2>Apariencia</h2><div class="opciones" role="group" aria-label="Tema">'+
-    [['auto','Automático'],['light','Claro'],['dark','Oscuro']].map(function(o){ return '<button data-acc="tema" data-tema="'+o[0]+'" aria-pressed="'+(tema===o[0])+'">'+o[1]+'</button>'; }).join('')+'</div></div>'+
+    [['light','Claro'],['dark','Oscuro'],['auto','Automático']].map(function(o){ return '<button data-acc="tema" data-tema="'+o[0]+'" aria-pressed="'+(tema===o[0])+'">'+o[1]+'</button>'; }).join('')+'</div><p class="nota">Automático usa el modo claro u oscuro que tenga tu teléfono.</p></div>'+
     '<div class="tarjeta p"><h2>Respaldo</h2><div class="privado">'+ic('escudo')+'<span>Tus datos están solo en este teléfono. Haz un respaldo cada semana para no perderlos.</span></div>'+
     '<button class="btn ancho" data-acc="copiarResp">'+ic('copiar','s')+'Copiar respaldo</button><p class="nota">Pégalo en un chat de WhatsApp contigo mismo. Para recuperar tus datos, pega aquí ese texto:</p>'+
     '<textarea id="respaldo" aria-label="Texto del respaldo para restaurar" placeholder="Pega aquí tu respaldo"></textarea><button class="btn sec ancho" data-acc="restaurar">Restaurar este respaldo</button></div>'+
