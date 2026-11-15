@@ -203,6 +203,18 @@ function servir() {
   await pg.fill('#respaldo', resp); await pg.click('[data-acc="restaurar"]'); await confirmar(pg);
   assert.deepStrictEqual(await pg.evaluate(() => [S.productos.length, S.bodega, S.tasa]), [1, 'Abasto Prueba', 100]);
 
+  // Código QR dentro de la app para compartirla
+  await pg.click('[data-tab="ajustes"]');
+  assert.ok(await pg.locator('#compartir .qr-caja svg').isVisible());
+  assert.ok(await pg.evaluate(() => document.querySelector('#i-qr path').getAttribute('d').length > 500), 'el QR viene dentro de la app');
+  await pg.click('[data-acc="copiarEnlace"]');
+  assert.strictEqual(await pg.evaluate(() => navigator.clipboard.readText()), 'https://jasu0906.github.io/claude-trabaja-/');
+  await pg.click('[data-acc="verQR"]');
+  assert.ok(await pg.locator('#capa .qr-caja.grande').isVisible());
+  await pg.screenshot({ path: path.resolve(__dirname, 'captura-qr.png') });
+  await pg.keyboard.press('Escape');
+  assert.ok(await pg.locator('#capa').isHidden());
+
   // 9. Tema claro y oscuro, y bienvenida vista de nuevo sin riesgo
   await pg.click('[data-tab="ajustes"]');
   await pg.click('[data-tema="dark"]');
