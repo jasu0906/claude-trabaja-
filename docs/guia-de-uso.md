@@ -16,77 +16,94 @@ No registra ventas, no cobra, no factura. Hace una sola cosa: el pedido.
 
 ## 2. Pantalla por pantalla
 
-### La parte de arriba, siempre visible
+### La primera vez que se abre
+
+Aparece una bienvenida de 3 pasos: qué hace la app, cómo calcula y que los datos quedan en el teléfono. Al final ofrece dos botones: **Ver un ejemplo** (abre una bodega con datos inventados) o **Empezar con mi negocio** (abre la app vacía). Quien ya tiene datos guardados no la ve; se puede repasar en Ajustes → Sobre Reponer → "Ver la bienvenida".
+
+### Lo que siempre está a la vista
 
 | Qué ves | Qué significa |
 |---|---|
-| Aviso amarillo "Estás viendo una bodega de ejemplo" | Los datos son inventados. El botón **Empezar con mi bodega** los borra y deja la app vacía |
-| Aviso "Tu último conteo fue hace N días" | Aparece si pasan 5 días sin contar. El botón **Contar ahora** lleva a la pestaña Conteo |
-| Tres recuadros | Cuántos productos hay que pedir hoy, cuántos están agotados y cuánto cuesta el pedido completo |
-| Cuatro pestañas | Pedido, Conteo, Productos y Ajustes |
+| Arriba: el logo y el nombre del negocio | Si no hay internet, aparece la etiqueta "Sin conexión". La app sigue funcionando |
+| Aviso amarillo "Bodega de ejemplo" | Los datos son inventados. El botón **Usar mi negocio** los borra y deja la app vacía |
+| Aviso "Tu último conteo fue hace N días" | Aparece si pasan 5 días sin contar. El botón **Contar ahora** lleva a Conteo |
+| Aviso rojo "No se pudo guardar en este teléfono" | El navegador está en modo privado o sin espacio. Hay que copiar el respaldo |
+| Abajo: cuatro botones | Pedido, Conteo, Productos y Ajustes. Sobre "Pedido" sale un número rojo con los productos por pedir |
 
-### Pestaña Pedido
+### Pedido
 
-Es la pantalla principal: la lista de lo que hay que pedir hoy, agrupada por proveedor.
+Es la pantalla principal. Arriba está el **resumen del día**: cuántos productos hay que pedir hoy, cuánto cuesta el pedido (en dólares y, si pusiste la tasa, en bolívares), cuántos están agotados, cuántos vienen en camino y a cuántos proveedores hay que pedirles.
 
-Cada producto muestra su estado, cuánto queda aproximadamente, para cuántos días alcanza, la cantidad a pedir y lo que cuesta.
+Debajo hay **una tarjeta por proveedor**. Cada producto muestra su estado, cuánto queda aproximadamente, para cuántos días alcanza, la cantidad a pedir y lo que cuesta.
 
-Debajo de cada proveedor hay tres botones:
+Cada tarjeta tiene tres botones:
 
 | Botón | Qué hace |
 |---|---|
 | **Enviar por WhatsApp** | Abre WhatsApp con el pedido ya escrito. Si guardaste el número del proveedor, abre directo su chat. El dueño revisa y envía |
-| **Copiar pedido** | Copia el mismo texto, para pegarlo donde quiera |
-| **Ya lo pedí** | Marca esos productos como pedidos. Pasan a la sección "En camino" y dejan de sugerirse |
+| **Copiar** | Copia el mismo texto, para pegarlo donde quiera |
+| **Ya lo pedí** | Marca esos productos como pedidos. Pasan a "En camino" y dejan de sugerirse |
+
+Después de tocar "Enviar por WhatsApp", la tarjeta recuerda tocar "Ya lo pedí" para no pedir dos veces.
 
 Más abajo pueden aparecer otras secciones:
 
-- **En camino:** lo que ya se pidió y no ha llegado. Cada producto tiene dos botones: **Llegó** (suma esa cantidad al inventario) y **Cancelar** (si al final no se pidió). Si pasa más tiempo del que tarda el proveedor, aparece "debió llegar hace N días".
+- **En camino:** lo que ya se pidió y no ha llegado. Cada producto tiene **Llegó** (suma esa cantidad al inventario) y **Cancelar** (si al final no se pidió). Si pasa más tiempo del que tarda el proveedor, aparece "Debió llegar hace N días".
 - **Se acaban esta semana:** productos que todavía no hay que pedir, pero pronto.
 - **Pedido mínimo:** si el proveedor exige un mínimo y el pedido no llega, avisa cuánto falta.
 
-### Pestaña Conteo
+### Conteo
 
-La lista de productos con dos casillas cada uno:
+Una fila por producto. Al lado del nombre dice cuánto había en el conteo anterior y hace cuántos días.
 
-- **Hay:** cuántas unidades hay ahora en el estante.
-- **Llegó:** cuántas unidades llegaron desde el último conteo. Si tocaste "Llegó" en la pestaña Pedido, ya viene lleno.
+| Elemento | Cómo se usa |
+|---|---|
+| Casilla **Hay** | Se escribe cuántas unidades hay ahora en el estante |
+| Botones **−** y **+** | Suben o bajan de uno en uno. Parten del último conteo: si antes había 30, el botón − pone 29 |
+| **¿Llegó mercancía desde el último conteo?** | Al tocarlo aparece la casilla **Llegó**. Si ya tocaste "Llegó" en Pedido, viene llena |
+| Buscador | Aparece cuando hay más de 5 productos. No hace falta escribir tildes |
+| Tecla Enter | Pasa al siguiente producto |
+| Barra de abajo | Dice cuántos productos llevas contados y tiene el botón **Guardar conteo** |
 
-Se toca **Guardar conteo**. No hace falta contar todo: solo se guardan los productos donde se escribió algo en "Hay".
+Los productos ya contados quedan marcados con una línea verde. No hace falta contar todo: solo se guardan los que tienen algo escrito en "Hay". Si cambias de pestaña antes de guardar, lo escrito no se pierde.
 
 Si se cuenta dos veces el mismo día, el segundo conteo reemplaza al primero. Sirve para corregir errores.
 
-### Pestaña Productos
+### Productos
 
-Arriba, el formulario para agregar un producto:
+Arriba está el botón **Agregar producto**, que abre una ficha con estos campos:
 
 | Campo | Qué poner |
 |---|---|
-| Nombre | Como lo conoce el dueño: "Harina de maíz 1 kg" |
-| Proveedor | A quién se lo compra. Los productos se agrupan por este nombre, así que hay que escribirlo siempre igual |
-| Costo por unidad (USD) | Lo que le cuesta a él cada unidad, no el precio de venta |
+| Nombre | Como lo conoce el dueño: "Harina de maíz 1 kg". No se puede repetir |
+| Proveedor | A quién se lo compra. Los pedidos se agrupan por este nombre, así que hay que escribirlo siempre igual |
+| Costo por unidad | Lo que le cuesta a él cada unidad, en dólares. No es el precio de venta |
 | Días que tarda en llegar | Desde que pide hasta que llega. Si va él mismo al mayorista, 0 o 1 |
 | Unidades por empaque | De cuántas unidades es el bulto. Si compra por unidad, 1 |
-| Cuántas hay hoy | El primer conteo |
+| Cuántas hay hoy | El primer conteo. Es opcional |
 
-Debajo está **Agregar de la lista rápida**: 26 productos comunes que se agregan con un toque. Después hay que editar cada uno para ponerle proveedor y costo.
+Debajo está la lista de productos con su proveedor, su costo, cuánto vende por semana y su estado. Los que no tienen proveedor o costo dicen **Falta completar**.
 
-Más abajo, la lista de productos con su estado, su proveedor, su costo y cuánto vende por semana. Cada uno tiene **Editar** y **Borrar**. Borrar pide tocar dos veces para confirmar.
+Para **editar** un producto se toca en la lista y se abre su ficha. Para **borrarlo**, dentro de la ficha está "Borrar este producto"; la app pide confirmar antes.
 
-### Pestaña Ajustes
+Al final está **Agregar de la lista rápida**: 26 productos comunes que se agregan con un toque. Después hay que abrir cada uno para ponerle proveedor y costo.
+
+### Ajustes
+
+Los cambios se guardan solos al salir de cada casilla; aparece el mensaje "Guardado".
 
 | Sección | Para qué |
 |---|---|
-| Nombre de la bodega | Aparece en el mensaje del pedido |
+| Tu negocio | Nombre (aparece en el mensaje del pedido), tasa del día y días que cubre cada pedido |
 | Tasa del día | Bolívares por dólar. Con la tasa puesta, los totales salen también en bolívares. La escribe el dueño; la app no la busca |
-| Días de venta que cubre cada pedido | Viene en 7. Si se sube, los pedidos son más grandes y menos frecuentes |
-| WhatsApp de los proveedores | El número de cada uno, con código de país |
-| Respaldo | **Copiar respaldo** copia todos los datos como texto. **Restaurar lo pegado** los recupera |
-| Informe de uso | Cuántos conteos y pedidos se han hecho. No trae precios ni productos. **Copiar informe** para enviártelo |
-| Tenerla a la mano | Cómo ponerla en la pantalla de inicio |
-| Borrar todos los datos | Empieza de cero. Pide tocar dos veces |
-
-Después de cambiar algo en Ajustes hay que tocar **Guardar ajustes**.
+| Días que cubre cada pedido | Viene en 7. Si se sube, los pedidos son más grandes y menos frecuentes |
+| WhatsApp de tus proveedores | El número de cada uno, con código de país |
+| Apariencia | Automático, Claro u Oscuro |
+| Respaldo | **Copiar respaldo** copia todos los datos como texto. Para recuperarlos se pegan en la casilla y se toca **Restaurar este respaldo**; la app pide confirmar |
+| Informe de uso | Cuántos conteos y pedidos se han hecho. No trae precios ni productos |
+| Tenerla en la pantalla de inicio | Los pasos para instalarla |
+| Sobre Reponer | Versión, quién la hizo, contacto y la bienvenida |
+| Borrar todos los datos | Empieza de cero. La app pide confirmar |
 
 ---
 
@@ -99,7 +116,7 @@ Un abasto vende harina. Su proveedor tarda 2 días y el bulto trae 20.
 | Lunes 2 | Agrega "Harina de maíz 1 kg" y escribe que hay 40 | Estado: "Falta otro conteo". Con un solo conteo no puede calcular |
 | Jueves 5 | Le llegan 20. No toca nada todavía | |
 | Lunes 9 | En Conteo escribe: Hay 20, Llegó 20. Guarda | Calcula: 40 + 20 − 20 = 40 vendidas en 7 días, 5,7 por día |
-| Lunes 9 | Mira la pestaña Pedido | Harina: "Pedir hoy", quedan ~20, alcanza para 4 días. Pedir 40 |
+| Lunes 9 | Mira la pestaña Pedido | Harina: "Pedir hoy", quedan unas 20, alcanza para 4 días. Pedir 40 |
 | Lunes 9 | Toca "Enviar por WhatsApp" y envía. Toca "Ya lo pedí" | La harina pasa a "En camino: 40 pedidas el 9" |
 | Miércoles 11 | Llega el pedido. Toca "Llegó" | Suma 40 a lo que estima que hay |
 | Jueves 12 | Cuenta el estante: Hay 43. "Llegó" ya dice 40. Guarda | Ajusta el cálculo con el dato nuevo |
@@ -122,7 +139,7 @@ Usa los últimos cuatro períodos entre conteos, para no guiarse por una sola se
 
 > el último conteo − lo que vende por día × los días que pasaron
 
-Por eso en pantalla dice "quedan ~14" con el símbolo de aproximado: es una estimación hasta el próximo conteo.
+Por eso en pantalla dice "Quedan unas 14": es una estimación hasta el próximo conteo.
 
 **3. Cuándo pedir**
 
@@ -187,7 +204,7 @@ Sí. Puedes escribir cantidades con decimales, por ejemplo 2,5 kilos.
 La sugerencia es una guía. Cuando se abre WhatsApp, puedes editar el mensaje antes de enviarlo. La decisión siempre es tuya.
 
 **La cantidad me parece muy alta (o muy baja).**
-En Ajustes, cambia "Días de venta que cubre cada pedido". Con menos días, pedidos más pequeños y más seguidos.
+En Ajustes, cambia "Días que cubre cada pedido". Con menos días, pedidos más pequeños y más seguidos.
 
 **En diciembre vendo mucho más. ¿La app lo sabe?**
 No adivina. Se ajusta sola a medida que cuentas, porque usa las últimas semanas. En temporada alta cuenta más seguido y sube los días de cobertura.
@@ -199,6 +216,9 @@ Solo la primera vez que la abres. Después funciona sin conexión, también cuan
 
 **¿Hay que descargarla de la tienda de aplicaciones?**
 No. Se abre desde un enlace en el navegador y se agrega a la pantalla de inicio. Queda con su ícono, como cualquier app.
+
+**¿Se puede poner con fondo oscuro?**
+Sí. En Ajustes → Apariencia eliges Claro, Oscuro o Automático.
 
 **¿Funciona en iPhone?**
 Sí, en Safari. En Android, en Chrome.
@@ -267,11 +287,11 @@ Dura unas 2 horas. La regla más importante: **el teléfono lo maneja el dueño,
 |---|---|---|
 | 1 | 5 min | **Abrir la app.** El dueño escanea el código del volante. Es el único momento en que hace falta internet |
 | 2 | 5 min | **Ponerla en la pantalla de inicio.** Menú del navegador → "Agregar a pantalla de inicio". Cerrar el navegador y abrir desde el ícono |
-| 3 | 1 min | **Empezar.** Tocar "Empezar con mi bodega" para borrar el ejemplo |
+| 3 | 1 min | **Empezar.** En la bienvenida, tocar "Empezar con mi negocio". Si ya está en el ejemplo, tocar "Usar mi negocio" |
 | 4 | 10 min | **Elegir los productos.** Los 10 a 15 que más vende, con la lista rápida. El resto se agrega después |
-| 5 | 45 min | **Completar cada producto.** Proveedor, costo, días que tarda y unidades por bulto. Es la parte más larga; las facturas ayudan |
+| 5 | 45 min | **Completar cada producto.** Tocar cada uno en la lista y llenar proveedor, costo, días que tarda y unidades por bulto. Es la parte más larga; las facturas ayudan |
 | 6 | 20 min | **Primer conteo.** Van juntos al estante. Él cuenta y escribe |
-| 7 | 10 min | **Ajustes.** Nombre del negocio, tasa del día y el WhatsApp de cada proveedor |
+| 7 | 10 min | **Ajustes.** Nombre del negocio, tasa del día y el WhatsApp de cada proveedor. Se guardan solos |
 | 8 | 5 min | **Respaldo.** "Copiar respaldo" y pegarlo en un chat de WhatsApp consigo mismo |
 | 9 | 10 min | **Ensayo.** Le muestras en tu teléfono, con la bodega de ejemplo, cómo se verá su pedido |
 | 10 | 5 min | **Acuerdo.** Qué día vuelve a contar y qué día pasas tú |
