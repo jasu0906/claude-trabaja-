@@ -16,6 +16,7 @@ Funciona en cualquier teléfono, sin internet y sin crear cuenta. Los datos se q
 | Saber qué se hizo y qué te toca hoy | [`RESUMEN-MANANA.md`](RESUMEN-MANANA.md) |
 | Entender el negocio desde cero | [`guia/como-funciona-mi-negocio.md`](guia/como-funciona-mi-negocio.md) |
 | Ver el plan de negocio completo | [`negocio/README.md`](negocio/README.md) |
+| Aprender a usar la app y responder preguntas | [`docs/guia-de-uso.md`](docs/guia-de-uso.md) |
 | Salir a visitar negocios | [`docs/semana-1.md`](docs/semana-1.md) |
 
 ## El problema
