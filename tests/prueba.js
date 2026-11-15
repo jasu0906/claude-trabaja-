@@ -207,6 +207,7 @@ function servir() {
   await pg.click('[data-tab="ajustes"]');
   assert.ok(await pg.locator('#compartir .qr-caja svg').isVisible());
   assert.ok(await pg.evaluate(() => document.querySelector('#i-qr path').getAttribute('d').length > 500), 'el QR viene dentro de la app');
+  assert.ok((await texto(pg, '#derechos')).includes('Todos los derechos reservados'));
   await pg.click('[data-acc="copiarEnlace"]');
   assert.strictEqual(await pg.evaluate(() => navigator.clipboard.readText()), 'https://jasu0906.github.io/claude-trabaja-/');
   await pg.click('[data-acc="verQR"]');
