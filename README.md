@@ -1,6 +1,8 @@
-# Reponer
+# REPIQ
 
-App gratuita para bodegas y abastos de Venezuela. Le dice al dueño **qué pedir hoy, cuánto y a qué proveedor**, y deja el pedido listo para enviar por WhatsApp.
+**Sé qué reponer, cuánto y a quién, con la plata que tengo hoy.**
+
+App gratuita para bodegas y abastos de Venezuela. Lleva el fiado de los vecinos, le dice al dueño **qué pedir, cuánto y a qué proveedor** según la plata que tiene ese día, y deja el pedido listo para enviar por WhatsApp. Antes se llamaba Reponer.
 
 Funciona en cualquier teléfono, sin internet y sin crear cuenta. Los datos se quedan en el teléfono del negocio.
 
@@ -10,16 +12,18 @@ Funciona en cualquier teléfono, sin internet y sin crear cuenta. Los datos se q
 
 ## Cómo funciona
 
+0. El dueño anota el fiado en segundos y cobra por WhatsApp con un toque.
 1. El dueño agrega los productos que más vende, con su proveedor y cuántos días tarda en llegar.
 2. Dos veces por semana cuenta lo que hay en el estante. Toma unos 2 minutos.
 3. Reponer calcula cuánto se vende por día y avisa qué se está acabando.
-4. La pantalla Pedido agrupa por proveedor y abre WhatsApp con el pedido escrito.
+4. Si escribe cuánta plata tiene hoy, REPIQ reparte ese dinero: primero lo agotado y lo que se acaba antes.
+5. La pantalla Pedido agrupa por proveedor y abre WhatsApp con el pedido escrito.
 
 No registra ventas, no cobra y no factura: solo hace el pedido.
 
 ## Derechos
 
-© 2026 Reponer. **Todos los derechos reservados.** Este repositorio es público solo para poder publicar la aplicación. No se permite copiar, modificar ni reutilizar su código, sus textos, su nombre ni su logotipo sin permiso por escrito. Ver [`LICENSE`](LICENSE).
+© 2026 REPIQ. **Todos los derechos reservados.** Este repositorio es público solo para poder publicar la aplicación. No se permite copiar, modificar ni reutilizar su código, sus textos, su nombre ni su logotipo sin permiso por escrito. Ver [`LICENSE`](LICENSE).
 
 ## Privacidad
 

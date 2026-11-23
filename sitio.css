@@ -1,14 +1,14 @@
 /* Estilos compartidos de las páginas informativas. Mismos colores que la app. */
-:root{--fondo:#f3f6f4;--papel:#fff;--tinta:#14231f;--tenue:#4a5d56;--linea:#d5ddd9;--marca:#0b5d4b;--marca-tinta:#fff;--etiqueta:#ffd84a;--etiqueta-tinta:#3a2f00;
+:root{--fondo:#f1f4fa;--papel:#fff;--tinta:#0b1230;--tenue:#4f5a78;--linea:#dbe2f0;--marca:#0b4fc4;--marca-tinta:#fff;--etiqueta:#c4f27e;--etiqueta-tinta:#11240a;
   --fuente:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
-@media (prefers-color-scheme:dark){:root{--fondo:#0e1614;--papel:#17221f;--tinta:#e8f0ed;--tenue:#9db0a9;--linea:#2c3b36;--marca:#4fc3a4;--marca-tinta:#06251d;color-scheme:dark}}
+@media (prefers-color-scheme:dark){:root{--fondo:#050a1c;--papel:#0d1530;--tinta:#eaf0ff;--tenue:#9aa8cc;--linea:#22305a;--marca:#6f9dff;--marca-tinta:#031030;color-scheme:dark}}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{margin:0;background:var(--fondo);color:var(--tinta);font:17px/1.55 var(--fuente)}
 .ancho{max-width:760px;margin:0 auto;padding:0 max(18px,env(safe-area-inset-right,0px)) 0 max(18px,env(safe-area-inset-left,0px))}
 header.sitio{padding:18px 0;border-bottom:1px solid var(--linea)}
 header.sitio .ancho{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-weight:800;font-size:1.35rem;letter-spacing:-.02em;color:var(--tinta);text-decoration:none}
+.logo{font-weight:900;font-style:italic;font-size:1.35rem;letter-spacing:-.02em;color:var(--tinta);text-decoration:none}
 .logo span{background:var(--etiqueta);color:var(--etiqueta-tinta);padding:0 .3em;border-radius:3px}
 main{display:flex;flex-direction:column;gap:44px;padding:40px 0 64px}
 section{display:flex;flex-direction:column;gap:14px}

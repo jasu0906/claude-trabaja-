@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0a5c4a">
-<meta name="description" content="Gratis para bodegas y abastos: cuenta el estante y Reponer te dice qué pedir, cuánto y a quién. Funciona sin internet.">
-<meta property="og:title" content="Reponer">
-<meta property="og:description" content="Qué pedir hoy, cuánto y a quién. Gratis y sin internet, para bodegas y abastos.">
+<meta name="theme-color" content="#0b4fc4">
+<meta name="description" content="Gratis para bodegas y abastos: anota el fiado y REPIQ te dice qué reponer, cuánto y a quién, con la plata que tienes hoy. Funciona sin internet.">
+<meta property="og:title" content="REPIQ">
+<meta property="og:description" content="Qué reponer, cuánto y a quién, con la plata que tienes hoy. Gratis y sin internet.">
 <meta property="og:type" content="website">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="manifest" href="manifest.webmanifest">
@@ -15,32 +15,32 @@
 <body>
 <script>window.REPONER_SITIO=1</script>
 <script src="contacto.js"></script>
-<title>Reponer</title>
-<!-- © 2026 Reponer (github.com/jasu0906). Todos los derechos reservados. Prohibida su copia o reutilización sin permiso por escrito. -->
+<title>REPIQ</title>
+<!-- © 2026 REPIQ (github.com/jasu0906). Todos los derechos reservados. Prohibida su copia o reutilización sin permiso por escrito. -->
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 /* Layout: columna de teléfono con barra superior fija, contenido en tarjetas y navegación inferior de cuatro secciones. */
 :root{
-  --fondo:#f4f6f5; --sup:#ffffff; --sup2:#edf1ef; --tinta:#10201c; --tenue:#52635c; --linea:#dde5e1;
-  --marca:#0a5c4a; --marca2:#0d7059; --suave:#e2f0eb; --sobre:#ffffff;
-  --acento:#ffd84a; --sobre-acento:#3a2f00;
-  --rojo:#a8231c; --rojo-f:#fbe5e2; --ambar:#7d5200; --ambar-f:#fcedc6; --verde:#14633c; --verde-f:#dbf1e3;
-  --heroe:#0a5c4a; --heroe-t:#ffffff; --heroe-s:#bfe0d5; --heroe-l:rgba(255,255,255,.16);
-  --sombra:0 1px 2px rgba(16,32,28,.05),0 6px 20px rgba(16,32,28,.06);
+  --fondo:#f1f4fa; --sup:#ffffff; --sup2:#e9eef8; --tinta:#0b1230; --tenue:#4f5a78; --linea:#dbe2f0;
+  --marca:#0b4fc4; --marca2:#0a43a8; --suave:#e6efff; --sobre:#ffffff; --foco:#0b4fc4;
+  --acento:#c4f27e; --sobre-acento:#11240a; --lima:#4f9d10;
+  --rojo:#b3261e; --rojo-f:#fde6e3; --ambar:#7d5200; --ambar-f:#fcedc6; --verde:#14633c; --verde-f:#dbf1e3;
+  --heroe:#06103a; --heroe-t:#ffffff; --heroe-s:#aab8e6; --heroe-l:rgba(255,255,255,.14);
+  --sombra:0 1px 2px rgba(11,18,48,.05),0 6px 20px rgba(11,18,48,.07);
   --r:16px; --fuente:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --fondo:#0b1311; --sup:#141f1c; --sup2:#1b2925; --tinta:#e9f1ee; --tenue:#9db1a9; --linea:#27362f;
-  --marca:#41c2a1; --marca2:#5bd3b4; --suave:#143029; --sobre:#04241b;
+  --fondo:#050a1c; --sup:#0d1530; --sup2:#141e3d; --tinta:#eaf0ff; --tenue:#9aa8cc; --linea:#22305a;
+  --marca:#6f9dff; --marca2:#8db1ff; --suave:#14224a; --sobre:#031030; --foco:#c4f27e; --lima:#b6ef7a;
   --rojo:#ff9d94; --rojo-f:#48201c; --ambar:#ffd27a; --ambar-f:#40300c; --verde:#8adfae; --verde-f:#153926;
-  --heroe:#10392f; --heroe-t:#eef7f3; --heroe-s:#9fc7ba; --heroe-l:rgba(255,255,255,.12);
-  --sombra:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25); color-scheme:dark}}
+  --heroe:#0e1d55; --heroe-t:#eef3ff; --heroe-s:#a7b6e4; --heroe-l:rgba(255,255,255,.12);
+  --sombra:0 1px 2px rgba(0,0,0,.35),0 6px 20px rgba(0,0,0,.3); color-scheme:dark}}
 :root[data-theme="dark"]{
-  --fondo:#0b1311; --sup:#141f1c; --sup2:#1b2925; --tinta:#e9f1ee; --tenue:#9db1a9; --linea:#27362f;
-  --marca:#41c2a1; --marca2:#5bd3b4; --suave:#143029; --sobre:#04241b;
+  --fondo:#050a1c; --sup:#0d1530; --sup2:#141e3d; --tinta:#eaf0ff; --tenue:#9aa8cc; --linea:#22305a;
+  --marca:#6f9dff; --marca2:#8db1ff; --suave:#14224a; --sobre:#031030; --foco:#c4f27e; --lima:#b6ef7a;
   --rojo:#ff9d94; --rojo-f:#48201c; --ambar:#ffd27a; --ambar-f:#40300c; --verde:#8adfae; --verde-f:#153926;
-  --heroe:#10392f; --heroe-t:#eef7f3; --heroe-s:#9fc7ba; --heroe-l:rgba(255,255,255,.12);
-  --sombra:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25); color-scheme:dark}
+  --heroe:#0e1d55; --heroe-t:#eef3ff; --heroe-s:#a7b6e4; --heroe-l:rgba(255,255,255,.12);
+  --sombra:0 1px 2px rgba(0,0,0,.35),0 6px 20px rgba(0,0,0,.3); color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
@@ -57,7 +57,8 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .barra{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--fondo);border-bottom:1px solid transparent;transition:border-color .2s}
 .barra.sombra{border-bottom-color:var(--linea)}
 .barra .col{display:flex;align-items:center;gap:10px;padding-block:12px}
-.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:1.2rem;letter-spacing:-.02em}
+.logo{display:flex;align-items:center;gap:9px;font-weight:900;font-style:italic;font-size:1.25rem;letter-spacing:-.01em}
+.logo .q,.sobre .q{color:var(--lima)}
 .logo svg{width:30px;height:30px;flex:none}
 .negocio{margin-left:auto;color:var(--tenue);font-size:.9rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .chip{display:inline-flex;align-items:center;gap:5px;font-size:.75rem;font-weight:700;padding:4px 9px;border-radius:99px;background:var(--sup2);color:var(--tenue);white-space:nowrap}
@@ -99,7 +100,7 @@ main{display:flex;flex-direction:column;gap:14px;padding-block:6px calc(104px + 
 .mini.pri{background:var(--suave);border-color:transparent;color:var(--marca)}
 .fila-b{display:flex;gap:10px;flex-wrap:wrap}
 .fila-b>*{flex:1 1 140px}
-:focus-visible{outline:3px solid var(--acento);outline-offset:2px;border-radius:10px}
+:focus-visible{outline:3px solid var(--foco);outline-offset:2px;border-radius:10px}
 
 /* Etiquetas de estado */
 .pill{display:inline-flex;align-items:center;font-size:.72rem;font-weight:800;padding:3px 8px;border-radius:99px;white-space:nowrap;letter-spacing:.01em}
@@ -201,7 +202,7 @@ details[open] summary{margin-bottom:12px}
 
 /* Navegación inferior */
 .tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--sup);border-top:1px solid var(--linea);padding-bottom:env(safe-area-inset-bottom,0px)}
-.tabs .col{display:grid;grid-template-columns:repeat(4,1fr);padding-block:6px}
+.tabs .col{display:grid;grid-template-columns:repeat(5,1fr);padding-block:6px}
 .tabs button{display:flex;flex-direction:column;align-items:center;gap:3px;border:0;background:none;padding:7px 2px;border-radius:12px;color:var(--tenue);font-size:.74rem;font-weight:700;position:relative}
 .tabs button[aria-current="page"]{color:var(--marca)}
 .tabs button[aria-current="page"] .ic{stroke-width:2.4}
@@ -228,6 +229,30 @@ details[open] summary{margin-bottom:12px}
 .puntos i{width:8px;height:8px;border-radius:99px;background:var(--linea);transition:width .2s,background .2s}
 .puntos i.on{width:22px;background:var(--marca)}
 @media (min-width:600px){#capa{align-items:center}.hoja{border-radius:22px}}
+/* Fiado y plata del día */
+.presu{display:flex;gap:10px;align-items:stretch}
+.presu input{font-size:1.25rem;font-weight:800;font-variant-numeric:tabular-nums}
+.mon{display:flex;gap:4px;background:var(--sup2);padding:4px;border-radius:13px;flex:none}
+.mon button{min-width:52px;border:0;border-radius:10px;background:transparent;font-weight:800;color:var(--tenue)}
+.mon button[aria-pressed="true"]{background:var(--sup);color:var(--tinta);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.barra-plata{height:10px;border-radius:99px;background:var(--sup2);overflow:hidden}
+.barra-plata i{display:block;height:100%;border-radius:99px;background:var(--marca)}
+.fuera{opacity:.75}
+.vecino{display:flex;gap:12px;align-items:center;width:100%;padding:14px 16px;border:0;border-top:1px solid var(--linea);background:none;text-align:left}
+.vecino:first-child{border-top:0}
+.vecino:hover{background:var(--sup2)}
+.vecino .t{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.vecino .t b{overflow-wrap:anywhere}
+.vecino .t small{color:var(--tenue);font-size:.84rem}
+.debe{font-weight:800;font-size:1.15rem;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.debe small{display:block;font-weight:600;font-size:.75rem;color:var(--tenue)}
+.debe.favor{color:var(--verde)}
+.mov{display:flex;gap:10px;justify-content:space-between;padding:10px 0;border-top:1px solid var(--linea);font-size:.92rem}
+.mov:first-child{border-top:0}
+.mov span{color:var(--tenue)}
+.mov b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.mov b.pago{color:var(--verde)}
+.tabs button span{font-size:.7rem}
 @media (max-width:380px){.campos{grid-template-columns:1fr}.heroe .grande{font-size:2.5rem}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -248,13 +273,15 @@ details[open] summary{margin-bottom:12px}
   <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/><path d="m9 12 2.2 2.2L15 10.5"/></symbol>
   <symbol id="i-nube" viewBox="0 0 24 24"><path d="M7 18.5a4 4 0 0 1-.6-7.9 5.5 5.5 0 0 1 10.7 1.2A3.4 3.4 0 0 1 17 18.5M4 4l16 16"/></symbol>
   <symbol id="i-flecha" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-fiado" viewBox="0 0 24 24"><path d="M5 4.5h11.5A2.5 2.5 0 0 1 19 7v12.5H7.5A2.5 2.5 0 0 1 5 17z"/><path d="M5 17a2.5 2.5 0 0 1 2.5-2.5H19M9 8.5h6M9 11.5h4"/></symbol>
+  <symbol id="i-plata" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.5"/><path d="M6.5 9.5v.01M17.5 14.5v.01"/></symbol>
   <symbol id="i-alerta" viewBox="0 0 24 24"><path d="M12 4 3 19.5h18zM12 10v4.5M12 17v.3"/></symbol>
-  <!--qr--><symbol id="i-qr" viewBox="0 0 33 33"><path d="M0,0H1V1H0zM1,0H2V1H1zM2,0H3V1H2zM3,0H4V1H3zM4,0H5V1H4zM5,0H6V1H5zM6,0H7V1H6zM8,0H9V1H8zM9,0H10V1H9zM10,0H11V1H10zM11,0H12V1H11zM13,0H14V1H13zM14,0H15V1H14zM17,0H18V1H17zM21,0H22V1H21zM24,0H25V1H24zM26,0H27V1H26zM27,0H28V1H27zM28,0H29V1H28zM29,0H30V1H29zM30,0H31V1H30zM31,0H32V1H31zM32,0H33V1H32zM0,1H1V2H0zM6,1H7V2H6zM8,1H9V2H8zM12,1H13V2H12zM13,1H14V2H13zM14,1H15V2H14zM18,1H19V2H18zM19,1H20V2H19zM20,1H21V2H20zM24,1H25V2H24zM26,1H27V2H26zM32,1H33V2H32zM0,2H1V3H0zM2,2H3V3H2zM3,2H4V3H3zM4,2H5V3H4zM6,2H7V3H6zM8,2H9V3H8zM11,2H12V3H11zM12,2H13V3H12zM13,2H14V3H13zM14,2H15V3H14zM15,2H16V3H15zM19,2H20V3H19zM21,2H22V3H21zM24,2H25V3H24zM26,2H27V3H26zM28,2H29V3H28zM29,2H30V3H29zM30,2H31V3H30zM32,2H33V3H32zM0,3H1V4H0zM2,3H3V4H2zM3,3H4V4H3zM4,3H5V4H4zM6,3H7V4H6zM9,3H10V4H9zM11,3H12V4H11zM12,3H13V4H12zM14,3H15V4H14zM15,3H16V4H15zM16,3H17V4H16zM18,3H19V4H18zM19,3H20V4H19zM20,3H21V4H20zM22,3H23V4H22zM24,3H25V4H24zM26,3H27V4H26zM28,3H29V4H28zM29,3H30V4H29zM30,3H31V4H30zM32,3H33V4H32zM0,4H1V5H0zM2,4H3V5H2zM3,4H4V5H3zM4,4H5V5H4zM6,4H7V5H6zM8,4H9V5H8zM10,4H11V5H10zM11,4H12V5H11zM15,4H16V5H15zM16,4H17V5H16zM17,4H18V5H17zM22,4H23V5H22zM23,4H24V5H23zM26,4H27V5H26zM28,4H29V5H28zM29,4H30V5H29zM30,4H31V5H30zM32,4H33V5H32zM0,5H1V6H0zM6,5H7V6H6zM9,5H10V6H9zM15,5H16V6H15zM16,5H17V6H16zM17,5H18V6H17zM19,5H20V6H19zM22,5H23V6H22zM24,5H25V6H24zM26,5H27V6H26zM32,5H33V6H32zM0,6H1V7H0zM1,6H2V7H1zM2,6H3V7H2zM3,6H4V7H3zM4,6H5V7H4zM5,6H6V7H5zM6,6H7V7H6zM8,6H9V7H8zM10,6H11V7H10zM12,6H13V7H12zM14,6H15V7H14zM16,6H17V7H16zM18,6H19V7H18zM20,6H21V7H20zM22,6H23V7H22zM24,6H25V7H24zM26,6H27V7H26zM27,6H28V7H27zM28,6H29V7H28zM29,6H30V7H29zM30,6H31V7H30zM31,6H32V7H31zM32,6H33V7H32zM10,7H11V8H10zM11,7H12V8H11zM12,7H13V8H12zM13,7H14V8H13zM15,7H16V8H15zM16,7H17V8H16zM22,7H23V8H22zM23,7H24V8H23zM0,8H1V9H0zM3,8H4V9H3zM4,8H5V9H4zM5,8H6V9H5zM6,8H7V9H6zM7,8H8V9H7zM8,8H9V9H8zM9,8H10V9H9zM11,8H12V9H11zM12,8H13V9H12zM14,8H15V9H14zM16,8H17V9H16zM17,8H18V9H17zM22,8H23V9H22zM23,8H24V9H23zM25,8H26V9H25zM28,8H29V9H28zM30,8H31V9H30zM31,8H32V9H31zM32,8H33V9H32zM0,9H1V10H0zM1,9H2V10H1zM2,9H3V10H2zM3,9H4V10H3zM4,9H5V10H4zM8,9H9V10H8zM9,9H10V10H9zM10,9H11V10H10zM11,9H12V10H11zM12,9H13V10H12zM13,9H14V10H13zM15,9H16V10H15zM17,9H18V10H17zM18,9H19V10H18zM19,9H20V10H19zM21,9H22V10H21zM23,9H24V10H23zM24,9H25V10H24zM28,9H29V10H28zM29,9H30V10H29zM30,9H31V10H30zM2,10H3V11H2zM4,10H5V11H4zM5,10H6V11H5zM6,10H7V11H6zM7,10H8V11H7zM8,10H9V11H8zM10,10H11V11H10zM11,10H12V11H11zM13,10H14V11H13zM15,10H16V11H15zM16,10H17V11H16zM20,10H21V11H20zM22,10H23V11H22zM23,10H24V11H23zM26,10H27V11H26zM28,10H29V11H28zM29,10H30V11H29zM30,10H31V11H30zM32,10H33V11H32zM3,11H4V12H3zM5,11H6V12H5zM13,11H14V12H13zM15,11H16V12H15zM16,11H17V12H16zM18,11H19V12H18zM20,11H21V12H20zM21,11H22V12H21zM22,11H23V12H22zM23,11H24V12H23zM25,11H26V12H25zM27,11H28V12H27zM30,11H31V12H30zM31,11H32V12H31zM4,12H5V13H4zM6,12H7V13H6zM7,12H8V13H7zM9,12H10V13H9zM13,12H14V13H13zM15,12H16V13H15zM17,12H18V13H17zM19,12H20V13H19zM21,12H22V13H21zM23,12H24V13H23zM24,12H25V13H24zM26,12H27V13H26zM27,12H28V13H27zM32,12H33V13H32zM1,13H2V14H1zM4,13H5V14H4zM5,13H6V14H5zM7,13H8V14H7zM8,13H9V14H8zM9,13H10V14H9zM10,13H11V14H10zM11,13H12V14H11zM12,13H13V14H12zM13,13H14V14H13zM14,13H15V14H14zM18,13H19V14H18zM19,13H20V14H19zM20,13H21V14H20zM24,13H25V14H24zM25,13H26V14H25zM27,13H28V14H27zM29,13H30V14H29zM1,14H2V15H1zM3,14H4V15H3zM4,14H5V15H4zM6,14H7V15H6zM7,14H8V15H7zM11,14H12V15H11zM14,14H15V15H14zM15,14H16V15H15zM17,14H18V15H17zM18,14H19V15H18zM19,14H20V15H19zM20,14H21V15H20zM21,14H22V15H21zM22,14H23V15H22zM26,14H27V15H26zM27,14H28V15H27zM29,14H30V15H29zM30,14H31V15H30zM0,15H1V16H0zM3,15H4V16H3zM4,15H5V16H4zM5,15H6V16H5zM9,15H10V16H9zM13,15H14V16H13zM16,15H17V16H16zM18,15H19V16H18zM20,15H21V16H20zM22,15H23V16H22zM23,15H24V16H23zM25,15H26V16H25zM28,15H29V16H28zM29,15H30V16H29zM30,15H31V16H30zM32,15H33V16H32zM4,16H5V17H4zM5,16H6V17H5zM6,16H7V17H6zM9,16H10V17H9zM10,16H11V17H10zM12,16H13V17H12zM15,16H16V17H15zM18,16H19V17H18zM25,16H26V17H25zM26,16H27V17H26zM27,16H28V17H27zM28,16H29V17H28zM0,17H1V18H0zM2,17H3V18H2zM9,17H10V18H9zM11,17H12V18H11zM14,17H15V18H14zM15,17H16V18H15zM17,17H18V18H17zM18,17H19V18H18zM19,17H20V18H19zM20,17H21V18H20zM26,17H27V18H26zM28,17H29V18H28zM30,17H31V18H30zM32,17H33V18H32zM1,18H2V19H1zM2,18H3V19H2zM6,18H7V19H6zM7,18H8V19H7zM8,18H9V19H8zM11,18H12V19H11zM12,18H13V19H12zM13,18H14V19H13zM15,18H16V19H15zM17,18H18V19H17zM18,18H19V19H18zM19,18H20V19H19zM21,18H22V19H21zM22,18H23V19H22zM23,18H24V19H23zM25,18H26V19H25zM27,18H28V19H27zM29,18H30V19H29zM30,18H31V19H30zM32,18H33V19H32zM7,19H8V20H7zM8,19H9V20H8zM10,19H11V20H10zM11,19H12V20H11zM12,19H13V20H12zM13,19H14V20H13zM14,19H15V20H14zM15,19H16V20H15zM16,19H17V20H16zM19,19H20V20H19zM20,19H21V20H20zM22,19H23V20H22zM23,19H24V20H23zM24,19H25V20H24zM25,19H26V20H25zM28,19H29V20H28zM29,19H30V20H29zM30,19H31V20H30zM31,19H32V20H31zM32,19H33V20H32zM2,20H3V21H2zM3,20H4V21H3zM6,20H7V21H6zM7,20H8V21H7zM9,20H10V21H9zM10,20H11V21H10zM14,20H15V21H14zM16,20H17V21H16zM18,20H19V21H18zM21,20H22V21H21zM22,20H23V21H22zM24,20H25V21H24zM27,20H28V21H27zM29,20H30V21H29zM0,21H1V22H0zM1,21H2V22H1zM2,21H3V22H2zM4,21H5V22H4zM5,21H6V22H5zM7,21H8V22H7zM17,21H18V22H17zM23,21H24V22H23zM24,21H25V22H24zM27,21H28V22H27zM28,21H29V22H28zM29,21H30V22H29zM30,21H31V22H30zM0,22H1V23H0zM3,22H4V23H3zM4,22H5V23H4zM6,22H7V23H6zM7,22H8V23H7zM8,22H9V23H8zM9,22H10V23H9zM11,22H12V23H11zM19,22H20V23H19zM20,22H21V23H20zM22,22H23V23H22zM23,22H24V23H23zM29,22H30V23H29zM30,22H31V23H30zM31,22H32V23H31zM32,22H33V23H32zM0,23H1V24H0zM2,23H3V24H2zM4,23H5V24H4zM5,23H6V24H5zM7,23H8V24H7zM8,23H9V24H8zM10,23H11V24H10zM11,23H12V24H11zM12,23H13V24H12zM15,23H16V24H15zM17,23H18V24H17zM18,23H19V24H18zM19,23H20V24H19zM20,23H21V24H20zM22,23H23V24H22zM23,23H24V24H23zM26,23H27V24H26zM28,23H29V24H28zM30,23H31V24H30zM31,23H32V24H31zM32,23H33V24H32zM0,24H1V25H0zM1,24H2V25H1zM3,24H4V25H3zM4,24H5V25H4zM6,24H7V25H6zM9,24H10V25H9zM11,24H12V25H11zM13,24H14V25H13zM14,24H15V25H14zM16,24H17V25H16zM20,24H21V25H20zM22,24H23V25H22zM24,24H25V25H24zM25,24H26V25H25zM26,24H27V25H26zM27,24H28V25H27zM28,24H29V25H28zM31,24H32V25H31zM8,25H9V26H8zM9,25H10V26H9zM10,25H11V26H10zM11,25H12V26H11zM12,25H13V26H12zM14,25H15V26H14zM15,25H16V26H15zM17,25H18V26H17zM18,25H19V26H18zM21,25H22V26H21zM23,25H24V26H23zM24,25H25V26H24zM28,25H29V26H28zM30,25H31V26H30zM31,25H32V26H31zM0,26H1V27H0zM1,26H2V27H1zM2,26H3V27H2zM3,26H4V27H3zM4,26H5V27H4zM5,26H6V27H5zM6,26H7V27H6zM8,26H9V27H8zM9,26H10V27H9zM11,26H12V27H11zM13,26H14V27H13zM14,26H15V27H14zM15,26H16V27H15zM17,26H18V27H17zM19,26H20V27H19zM20,26H21V27H20zM23,26H24V27H23zM24,26H25V27H24zM26,26H27V27H26zM28,26H29V27H28zM30,26H31V27H30zM0,27H1V28H0zM6,27H7V28H6zM8,27H9V28H8zM12,27H13V28H12zM15,27H16V28H15zM17,27H18V28H17zM18,27H19V28H18zM19,27H20V28H19zM21,27H22V28H21zM22,27H23V28H22zM23,27H24V28H23zM24,27H25V28H24zM28,27H29V28H28zM29,27H30V28H29zM30,27H31V28H30zM31,27H32V28H31zM32,27H33V28H32zM0,28H1V29H0zM2,28H3V29H2zM3,28H4V29H3zM4,28H5V29H4zM6,28H7V29H6zM8,28H9V29H8zM10,28H11V29H10zM11,28H12V29H11zM14,28H15V29H14zM16,28H17V29H16zM17,28H18V29H17zM21,28H22V29H21zM22,28H23V29H22zM23,28H24V29H23zM24,28H25V29H24zM25,28H26V29H25zM26,28H27V29H26zM27,28H28V29H27zM28,28H29V29H28zM31,28H32V29H31zM32,28H33V29H32zM0,29H1V30H0zM2,29H3V30H2zM3,29H4V30H3zM4,29H5V30H4zM6,29H7V30H6zM8,29H9V30H8zM9,29H10V30H9zM16,29H17V30H16zM18,29H19V30H18zM21,29H22V30H21zM22,29H23V30H22zM24,29H25V30H24zM25,29H26V30H25zM27,29H28V30H27zM29,29H30V30H29zM30,29H31V30H30zM32,29H33V30H32zM0,30H1V31H0zM2,30H3V31H2zM3,30H4V31H3zM4,30H5V31H4zM6,30H7V31H6zM9,30H10V31H9zM10,30H11V31H10zM11,30H12V31H11zM12,30H13V31H12zM13,30H14V31H13zM14,30H15V31H14zM15,30H16V31H15zM17,30H18V31H17zM18,30H19V31H18zM19,30H20V31H19zM23,30H24V31H23zM24,30H25V31H24zM25,30H26V31H25zM27,30H28V31H27zM28,30H29V31H28zM29,30H30V31H29zM31,30H32V31H31zM32,30H33V31H32zM0,31H1V32H0zM6,31H7V32H6zM13,31H14V32H13zM14,31H15V32H14zM19,31H20V32H19zM20,31H21V32H20zM25,31H26V32H25zM26,31H27V32H26zM27,31H28V32H27zM28,31H29V32H28zM29,31H30V32H29zM30,31H31V32H30zM31,31H32V32H31zM32,31H33V32H32zM0,32H1V33H0zM1,32H2V33H1zM2,32H3V33H2zM3,32H4V33H3zM4,32H5V33H4zM5,32H6V33H5zM6,32H7V33H6zM8,32H9V33H8zM9,32H10V33H9zM15,32H16V33H15zM16,32H17V33H16zM17,32H18V33H17zM19,32H20V33H19zM24,32H25V33H24zM27,32H28V33H27zM28,32H29V33H28z" fill="#10201c" stroke="none"/></symbol><!--/qr-->
-  <symbol id="i-logo" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#0a5c4a" stroke="none"/><rect x="14" y="16" width="10" height="13" rx="2.5" fill="#ffffff" stroke="none"/><rect x="27" y="16" width="10" height="13" rx="2.5" fill="#ffffff" stroke="none"/><rect x="40" y="16" width="10" height="13" rx="2.5" fill="#ffd84a" stroke="none"/><rect x="12" y="31" width="40" height="3.5" rx="1.75" fill="#ffffff" fill-opacity=".55" stroke="none"/><rect x="14" y="38" width="10" height="11" rx="2.5" fill="#ffffff" stroke="none"/><rect x="27" y="38" width="10" height="11" rx="2.5" fill="#ffd84a" stroke="none"/><rect x="40" y="38" width="10" height="11" rx="2.5" fill="none" stroke="#ffffff" stroke-opacity=".7" stroke-width="2" stroke-dasharray="3 3"/></symbol>
+  <!--qr--><symbol id="i-qr" viewBox="0 0 33 33"><path d="M0,0H1V1H0zM1,0H2V1H1zM2,0H3V1H2zM3,0H4V1H3zM4,0H5V1H4zM5,0H6V1H5zM6,0H7V1H6zM8,0H9V1H8zM9,0H10V1H9zM10,0H11V1H10zM11,0H12V1H11zM13,0H14V1H13zM14,0H15V1H14zM17,0H18V1H17zM21,0H22V1H21zM24,0H25V1H24zM26,0H27V1H26zM27,0H28V1H27zM28,0H29V1H28zM29,0H30V1H29zM30,0H31V1H30zM31,0H32V1H31zM32,0H33V1H32zM0,1H1V2H0zM6,1H7V2H6zM8,1H9V2H8zM12,1H13V2H12zM13,1H14V2H13zM14,1H15V2H14zM18,1H19V2H18zM19,1H20V2H19zM20,1H21V2H20zM24,1H25V2H24zM26,1H27V2H26zM32,1H33V2H32zM0,2H1V3H0zM2,2H3V3H2zM3,2H4V3H3zM4,2H5V3H4zM6,2H7V3H6zM8,2H9V3H8zM11,2H12V3H11zM12,2H13V3H12zM13,2H14V3H13zM14,2H15V3H14zM15,2H16V3H15zM19,2H20V3H19zM21,2H22V3H21zM24,2H25V3H24zM26,2H27V3H26zM28,2H29V3H28zM29,2H30V3H29zM30,2H31V3H30zM32,2H33V3H32zM0,3H1V4H0zM2,3H3V4H2zM3,3H4V4H3zM4,3H5V4H4zM6,3H7V4H6zM9,3H10V4H9zM11,3H12V4H11zM12,3H13V4H12zM14,3H15V4H14zM15,3H16V4H15zM16,3H17V4H16zM18,3H19V4H18zM19,3H20V4H19zM20,3H21V4H20zM22,3H23V4H22zM24,3H25V4H24zM26,3H27V4H26zM28,3H29V4H28zM29,3H30V4H29zM30,3H31V4H30zM32,3H33V4H32zM0,4H1V5H0zM2,4H3V5H2zM3,4H4V5H3zM4,4H5V5H4zM6,4H7V5H6zM8,4H9V5H8zM10,4H11V5H10zM11,4H12V5H11zM15,4H16V5H15zM16,4H17V5H16zM17,4H18V5H17zM22,4H23V5H22zM23,4H24V5H23zM26,4H27V5H26zM28,4H29V5H28zM29,4H30V5H29zM30,4H31V5H30zM32,4H33V5H32zM0,5H1V6H0zM6,5H7V6H6zM9,5H10V6H9zM15,5H16V6H15zM16,5H17V6H16zM17,5H18V6H17zM19,5H20V6H19zM22,5H23V6H22zM24,5H25V6H24zM26,5H27V6H26zM32,5H33V6H32zM0,6H1V7H0zM1,6H2V7H1zM2,6H3V7H2zM3,6H4V7H3zM4,6H5V7H4zM5,6H6V7H5zM6,6H7V7H6zM8,6H9V7H8zM10,6H11V7H10zM12,6H13V7H12zM14,6H15V7H14zM16,6H17V7H16zM18,6H19V7H18zM20,6H21V7H20zM22,6H23V7H22zM24,6H25V7H24zM26,6H27V7H26zM27,6H28V7H27zM28,6H29V7H28zM29,6H30V7H29zM30,6H31V7H30zM31,6H32V7H31zM32,6H33V7H32zM10,7H11V8H10zM11,7H12V8H11zM12,7H13V8H12zM13,7H14V8H13zM15,7H16V8H15zM16,7H17V8H16zM22,7H23V8H22zM23,7H24V8H23zM0,8H1V9H0zM3,8H4V9H3zM4,8H5V9H4zM5,8H6V9H5zM6,8H7V9H6zM7,8H8V9H7zM8,8H9V9H8zM9,8H10V9H9zM11,8H12V9H11zM12,8H13V9H12zM14,8H15V9H14zM16,8H17V9H16zM17,8H18V9H17zM22,8H23V9H22zM23,8H24V9H23zM25,8H26V9H25zM28,8H29V9H28zM30,8H31V9H30zM31,8H32V9H31zM32,8H33V9H32zM0,9H1V10H0zM1,9H2V10H1zM2,9H3V10H2zM3,9H4V10H3zM4,9H5V10H4zM8,9H9V10H8zM9,9H10V10H9zM10,9H11V10H10zM11,9H12V10H11zM12,9H13V10H12zM13,9H14V10H13zM15,9H16V10H15zM17,9H18V10H17zM18,9H19V10H18zM19,9H20V10H19zM21,9H22V10H21zM23,9H24V10H23zM24,9H25V10H24zM28,9H29V10H28zM29,9H30V10H29zM30,9H31V10H30zM2,10H3V11H2zM4,10H5V11H4zM5,10H6V11H5zM6,10H7V11H6zM7,10H8V11H7zM8,10H9V11H8zM10,10H11V11H10zM11,10H12V11H11zM13,10H14V11H13zM15,10H16V11H15zM16,10H17V11H16zM20,10H21V11H20zM22,10H23V11H22zM23,10H24V11H23zM26,10H27V11H26zM28,10H29V11H28zM29,10H30V11H29zM30,10H31V11H30zM32,10H33V11H32zM3,11H4V12H3zM5,11H6V12H5zM13,11H14V12H13zM15,11H16V12H15zM16,11H17V12H16zM18,11H19V12H18zM20,11H21V12H20zM21,11H22V12H21zM22,11H23V12H22zM23,11H24V12H23zM25,11H26V12H25zM27,11H28V12H27zM30,11H31V12H30zM31,11H32V12H31zM4,12H5V13H4zM6,12H7V13H6zM7,12H8V13H7zM9,12H10V13H9zM13,12H14V13H13zM15,12H16V13H15zM17,12H18V13H17zM19,12H20V13H19zM21,12H22V13H21zM23,12H24V13H23zM24,12H25V13H24zM26,12H27V13H26zM27,12H28V13H27zM32,12H33V13H32zM1,13H2V14H1zM4,13H5V14H4zM5,13H6V14H5zM7,13H8V14H7zM8,13H9V14H8zM9,13H10V14H9zM10,13H11V14H10zM11,13H12V14H11zM12,13H13V14H12zM13,13H14V14H13zM14,13H15V14H14zM18,13H19V14H18zM19,13H20V14H19zM20,13H21V14H20zM24,13H25V14H24zM25,13H26V14H25zM27,13H28V14H27zM29,13H30V14H29zM1,14H2V15H1zM3,14H4V15H3zM4,14H5V15H4zM6,14H7V15H6zM7,14H8V15H7zM11,14H12V15H11zM14,14H15V15H14zM15,14H16V15H15zM17,14H18V15H17zM18,14H19V15H18zM19,14H20V15H19zM20,14H21V15H20zM21,14H22V15H21zM22,14H23V15H22zM26,14H27V15H26zM27,14H28V15H27zM29,14H30V15H29zM30,14H31V15H30zM0,15H1V16H0zM3,15H4V16H3zM4,15H5V16H4zM5,15H6V16H5zM9,15H10V16H9zM13,15H14V16H13zM16,15H17V16H16zM18,15H19V16H18zM20,15H21V16H20zM22,15H23V16H22zM23,15H24V16H23zM25,15H26V16H25zM28,15H29V16H28zM29,15H30V16H29zM30,15H31V16H30zM32,15H33V16H32zM4,16H5V17H4zM5,16H6V17H5zM6,16H7V17H6zM9,16H10V17H9zM10,16H11V17H10zM12,16H13V17H12zM15,16H16V17H15zM18,16H19V17H18zM25,16H26V17H25zM26,16H27V17H26zM27,16H28V17H27zM28,16H29V17H28zM0,17H1V18H0zM2,17H3V18H2zM9,17H10V18H9zM11,17H12V18H11zM14,17H15V18H14zM15,17H16V18H15zM17,17H18V18H17zM18,17H19V18H18zM19,17H20V18H19zM20,17H21V18H20zM26,17H27V18H26zM28,17H29V18H28zM30,17H31V18H30zM32,17H33V18H32zM1,18H2V19H1zM2,18H3V19H2zM6,18H7V19H6zM7,18H8V19H7zM8,18H9V19H8zM11,18H12V19H11zM12,18H13V19H12zM13,18H14V19H13zM15,18H16V19H15zM17,18H18V19H17zM18,18H19V19H18zM19,18H20V19H19zM21,18H22V19H21zM22,18H23V19H22zM23,18H24V19H23zM25,18H26V19H25zM27,18H28V19H27zM29,18H30V19H29zM30,18H31V19H30zM32,18H33V19H32zM7,19H8V20H7zM8,19H9V20H8zM10,19H11V20H10zM11,19H12V20H11zM12,19H13V20H12zM13,19H14V20H13zM14,19H15V20H14zM15,19H16V20H15zM16,19H17V20H16zM19,19H20V20H19zM20,19H21V20H20zM22,19H23V20H22zM23,19H24V20H23zM24,19H25V20H24zM25,19H26V20H25zM28,19H29V20H28zM29,19H30V20H29zM30,19H31V20H30zM31,19H32V20H31zM32,19H33V20H32zM2,20H3V21H2zM3,20H4V21H3zM6,20H7V21H6zM7,20H8V21H7zM9,20H10V21H9zM10,20H11V21H10zM14,20H15V21H14zM16,20H17V21H16zM18,20H19V21H18zM21,20H22V21H21zM22,20H23V21H22zM24,20H25V21H24zM27,20H28V21H27zM29,20H30V21H29zM0,21H1V22H0zM1,21H2V22H1zM2,21H3V22H2zM4,21H5V22H4zM5,21H6V22H5zM7,21H8V22H7zM17,21H18V22H17zM23,21H24V22H23zM24,21H25V22H24zM27,21H28V22H27zM28,21H29V22H28zM29,21H30V22H29zM30,21H31V22H30zM0,22H1V23H0zM3,22H4V23H3zM4,22H5V23H4zM6,22H7V23H6zM7,22H8V23H7zM8,22H9V23H8zM9,22H10V23H9zM11,22H12V23H11zM19,22H20V23H19zM20,22H21V23H20zM22,22H23V23H22zM23,22H24V23H23zM29,22H30V23H29zM30,22H31V23H30zM31,22H32V23H31zM32,22H33V23H32zM0,23H1V24H0zM2,23H3V24H2zM4,23H5V24H4zM5,23H6V24H5zM7,23H8V24H7zM8,23H9V24H8zM10,23H11V24H10zM11,23H12V24H11zM12,23H13V24H12zM15,23H16V24H15zM17,23H18V24H17zM18,23H19V24H18zM19,23H20V24H19zM20,23H21V24H20zM22,23H23V24H22zM23,23H24V24H23zM26,23H27V24H26zM28,23H29V24H28zM30,23H31V24H30zM31,23H32V24H31zM32,23H33V24H32zM0,24H1V25H0zM1,24H2V25H1zM3,24H4V25H3zM4,24H5V25H4zM6,24H7V25H6zM9,24H10V25H9zM11,24H12V25H11zM13,24H14V25H13zM14,24H15V25H14zM16,24H17V25H16zM20,24H21V25H20zM22,24H23V25H22zM24,24H25V25H24zM25,24H26V25H25zM26,24H27V25H26zM27,24H28V25H27zM28,24H29V25H28zM31,24H32V25H31zM8,25H9V26H8zM9,25H10V26H9zM10,25H11V26H10zM11,25H12V26H11zM12,25H13V26H12zM14,25H15V26H14zM15,25H16V26H15zM17,25H18V26H17zM18,25H19V26H18zM21,25H22V26H21zM23,25H24V26H23zM24,25H25V26H24zM28,25H29V26H28zM30,25H31V26H30zM31,25H32V26H31zM0,26H1V27H0zM1,26H2V27H1zM2,26H3V27H2zM3,26H4V27H3zM4,26H5V27H4zM5,26H6V27H5zM6,26H7V27H6zM8,26H9V27H8zM9,26H10V27H9zM11,26H12V27H11zM13,26H14V27H13zM14,26H15V27H14zM15,26H16V27H15zM17,26H18V27H17zM19,26H20V27H19zM20,26H21V27H20zM23,26H24V27H23zM24,26H25V27H24zM26,26H27V27H26zM28,26H29V27H28zM30,26H31V27H30zM0,27H1V28H0zM6,27H7V28H6zM8,27H9V28H8zM12,27H13V28H12zM15,27H16V28H15zM17,27H18V28H17zM18,27H19V28H18zM19,27H20V28H19zM21,27H22V28H21zM22,27H23V28H22zM23,27H24V28H23zM24,27H25V28H24zM28,27H29V28H28zM29,27H30V28H29zM30,27H31V28H30zM31,27H32V28H31zM32,27H33V28H32zM0,28H1V29H0zM2,28H3V29H2zM3,28H4V29H3zM4,28H5V29H4zM6,28H7V29H6zM8,28H9V29H8zM10,28H11V29H10zM11,28H12V29H11zM14,28H15V29H14zM16,28H17V29H16zM17,28H18V29H17zM21,28H22V29H21zM22,28H23V29H22zM23,28H24V29H23zM24,28H25V29H24zM25,28H26V29H25zM26,28H27V29H26zM27,28H28V29H27zM28,28H29V29H28zM31,28H32V29H31zM32,28H33V29H32zM0,29H1V30H0zM2,29H3V30H2zM3,29H4V30H3zM4,29H5V30H4zM6,29H7V30H6zM8,29H9V30H8zM9,29H10V30H9zM16,29H17V30H16zM18,29H19V30H18zM21,29H22V30H21zM22,29H23V30H22zM24,29H25V30H24zM25,29H26V30H25zM27,29H28V30H27zM29,29H30V30H29zM30,29H31V30H30zM32,29H33V30H32zM0,30H1V31H0zM2,30H3V31H2zM3,30H4V31H3zM4,30H5V31H4zM6,30H7V31H6zM9,30H10V31H9zM10,30H11V31H10zM11,30H12V31H11zM12,30H13V31H12zM13,30H14V31H13zM14,30H15V31H14zM15,30H16V31H15zM17,30H18V31H17zM18,30H19V31H18zM19,30H20V31H19zM23,30H24V31H23zM24,30H25V31H24zM25,30H26V31H25zM27,30H28V31H27zM28,30H29V31H28zM29,30H30V31H29zM31,30H32V31H31zM32,30H33V31H32zM0,31H1V32H0zM6,31H7V32H6zM13,31H14V32H13zM14,31H15V32H14zM19,31H20V32H19zM20,31H21V32H20zM25,31H26V32H25zM26,31H27V32H26zM27,31H28V32H27zM28,31H29V32H28zM29,31H30V32H29zM30,31H31V32H30zM31,31H32V32H31zM32,31H33V32H32zM0,32H1V33H0zM1,32H2V33H1zM2,32H3V33H2zM3,32H4V33H3zM4,32H5V33H4zM5,32H6V33H5zM6,32H7V33H6zM8,32H9V33H8zM9,32H10V33H9zM15,32H16V33H15zM16,32H17V33H16zM17,32H18V33H17zM19,32H20V33H19zM24,32H25V33H24zM27,32H28V33H27zM28,32H29V33H28z" fill="#0b1230" stroke="none"/></symbol><!--/qr-->
+  <symbol id="i-logo" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#0b4fc4" stroke="none"/><path d="M7 25h11M4 32h12M7 39h9" stroke="#c4f27e" stroke-width="3.5" stroke-linecap="round" fill="none"/><path d="M21 51 27.5 13h15.5c7.5 0 11.6 4.3 10.4 10.6-.9 4.7-4 7.8-8.6 9L51 51h-9.6l-5.2-17h-4.4L28.9 51z" fill="#ffffff" stroke="none"/><path d="M33.6 20.5h7.8c3 0 4.6 1.6 4.1 4.2-.4 2.4-2.4 3.8-5.4 3.8h-7.9z" fill="#0b4fc4" stroke="none"/><path d="M16 32h19m-5.5-5.5L35 32l-5.5 5.5" stroke="#c4f27e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
 </defs></svg>
 
 <header class="barra" id="barra"><div class="col">
-  <div class="logo"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>Reponer</span></div>
+  <div class="logo"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>REPI<span class="q">Q</span></span></div>
   <span class="chip" id="sinRed" hidden><svg class="ic s" aria-hidden="true"><use href="#i-nube"/></svg>Sin conexión</span>
   <span class="negocio" id="negocio"></span>
 </div></header>
@@ -269,6 +296,7 @@ details[open] summary{margin-bottom:12px}
 
 <nav class="tabs" aria-label="Secciones"><div class="col">
   <button data-tab="pedido"><svg class="ic" aria-hidden="true"><use href="#i-lista"/></svg><span>Pedido</span><i class="punto" id="puntoPedido" hidden></i></button>
+  <button data-tab="fiado"><svg class="ic" aria-hidden="true"><use href="#i-fiado"/></svg><span>Fiado</span></button>
   <button data-tab="conteo"><svg class="ic" aria-hidden="true"><use href="#i-contar"/></svg><span>Conteo</span></button>
   <button data-tab="productos"><svg class="ic" aria-hidden="true"><use href="#i-caja"/></svg><span>Productos</span></button>
   <button data-tab="ajustes"><svg class="ic" aria-hidden="true"><use href="#i-ajustes"/></svg><span>Ajustes</span></button>
@@ -279,7 +307,7 @@ details[open] summary{margin-bottom:12px}
 
 <script>
 'use strict';
-var KEY='reponer.v1', K_BIEN='reponer.bienvenida', K_TEMA='reponer.tema', VERSION='2.0', SEGURIDAD=2, DIAS_AVISO=5;
+var KEY='reponer.v1', K_BIEN='reponer.bienvenida', K_TEMA='reponer.tema', VERSION='3.0', SEGURIDAD=2, DIAS_AVISO=5;
 var SITIO='https://jasu0906.github.io/claude-trabaja-/';
 var CONTACTO=window.REPONER_CONTACTO||{};
 
@@ -363,17 +391,21 @@ function ejemplo(){
     p('Café 250 g','Mayorista El Trigal',2.90,4,10,[10,5,0],[0,0]),
     p('Huevos (cartón de 30)','Granja San José',5.50,1,5,[8,6,4],[5,10]),
     p('Jabón en barra','Mayorista El Trigal',0.70,4,24,[30,28,27],[0,0])
+  ],fiado:[
+    {id:uid(),nombre:'Sra. Carmen',tel:'',movs:[{fecha:f[0],tipo:'fio',usd:6.5,nota:'Harina y aceite'},{fecha:f[1],tipo:'pago',usd:4,nota:''},{fecha:f[2],tipo:'fio',usd:3.2,nota:'Café'}]},
+    {id:uid(),nombre:'José, el de la esquina',tel:'',movs:[{fecha:f[2],tipo:'fio',usd:2.5,nota:'Pan y queso'}]},
+    {id:uid(),nombre:'Luisa',tel:'',movs:[{fecha:f[0],tipo:'fio',usd:10,nota:''},{fecha:f[1],tipo:'pago',usd:10,nota:''}]}
   ]};
 }
-function vacio(){ return {ejemplo:false,bodega:'',tasa:0,cobertura:7,telefonos:{},minimos:{},catalogos:{},registro:{inicio:hoyISO(),pedidos:0},productos:[]}; }
+function vacio(){ return {ejemplo:false,bodega:'',tasa:0,cobertura:7,telefonos:{},minimos:{},catalogos:{},registro:{inicio:hoyISO(),pedidos:0,dias:[hoyISO()]},productos:[],fiado:[]}; }
 function objeto(o){ return o&&typeof o==='object'&&!Array.isArray(o)?o:{}; }
-/* Revisa unos datos guardados o pegados y los deja en una forma segura. Devuelve null si no son datos de Reponer. */
+/* Revisa unos datos guardados o pegados y los deja en una forma segura. Devuelve null si no son datos de REPIQ. */
 function sanear(o){
   if(!o||typeof o!=='object'||!Array.isArray(o.productos)) return null;
   var reg=objeto(o.registro), vistos={};
   var r={ejemplo:!!o.ejemplo,bodega:typeof o.bodega==='string'?o.bodega:'',tasa:num(o.tasa,0),cobertura:Math.max(1,Math.round(num(o.cobertura,7)))||7,
     telefonos:objeto(o.telefonos),minimos:objeto(o.minimos),catalogos:objeto(o.catalogos),
-    registro:{inicio:esFecha(reg.inicio)?reg.inicio:hoyISO(),pedidos:Math.round(num(reg.pedidos,0))},productos:[]};
+    registro:{inicio:esFecha(reg.inicio)?reg.inicio:hoyISO(),pedidos:Math.round(num(reg.pedidos,0)),dias:(Array.isArray(reg.dias)?reg.dias:[]).filter(esFecha).slice(-60)},productos:[],fiado:[]};
   o.productos.forEach(function(p){
     if(!p||typeof p.nombre!=='string'||!p.nombre.trim()) return;
     var id=typeof p.id==='string'&&p.id&&!vistos[p.id]?p.id:uid(); vistos[id]=1;
@@ -385,6 +417,16 @@ function sanear(o){
     if(typeof p.cat==='string') q.cat=p.cat;
     r.productos.push(q);
   });
+  var vistosF={};
+  (Array.isArray(o.fiado)?o.fiado:[]).forEach(function(c){
+    if(!c||typeof c.nombre!=='string'||!c.nombre.trim()) return;
+    var id=typeof c.id==='string'&&c.id&&!vistosF[c.id]?c.id:uid(); vistosF[id]=1;
+    var q={id:id,nombre:c.nombre.trim().slice(0,40),tel:typeof c.tel==='string'?c.tel:'',movs:[]};
+    (Array.isArray(c.movs)?c.movs:[]).forEach(function(m){ var v=m?num(m.usd,0):0; if(m&&esFecha(m.fecha)&&(m.tipo==='fio'||m.tipo==='pago')&&v>0){ var x={fecha:m.fecha,tipo:m.tipo,usd:v,nota:typeof m.nota==='string'?m.nota.slice(0,60):''}; if(num(m.bs,0)>0) x.bs=num(m.bs,0); q.movs.push(x); } });
+    q.movs.sort(function(a,b){ return a.fecha<b.fecha?-1:a.fecha>b.fecha?1:0; });
+    r.fiado.push(q);
+  });
+  var pr=objeto(o.presupuesto); if(esFecha(pr.fecha)&&num(pr.monto,0)>0) r.presupuesto={monto:num(pr.monto,0),moneda:pr.moneda==='bs'?'bs':'usd',fecha:pr.fecha};
   return r;
 }
 var S, tab='pedido', borrador={}, enviado={}, filtro={conteo:'',productos:''}, falloGuardar=false, habiaDatos=false;
@@ -400,22 +442,40 @@ function quedan(x){ var r=restante(x); return r==='<1'?'Queda menos de 1':r==='1
 function hace(n){ return n===0?'hoy':n===1?'ayer':'hace '+n+' días'; }
 function iniciales(t){ var w=String(t).trim().split(/\s+/).filter(function(x){return /[a-záéíóúñ0-9]/i.test(x.charAt(0));}); return ((w[0]||'?').charAt(0)+(w.length>1?w[w.length-1].charAt(0):'')).toUpperCase(); }
 function proveedores(){ var o={}; S.productos.forEach(function(p){ if(p.proveedor) o[p.proveedor]=1; }); return Object.keys(o).sort(); }
-function pedidos(){
-  var h=hoyISO(), g={};
-  S.productos.forEach(function(p){ var a=analizar(p,S,h); if(a.estado==='agotado'||a.estado==='pedir'){ var k=p.proveedor||'Sin proveedor'; (g[k]=g[k]||[]).push({p:p,a:a}); } });
-  return g;
+/* Pedido según la plata de hoy. El cálculo de cada producto no cambia: si la plata no alcanza para todo,
+   se reparte por bultos completos, primero lo agotado y luego lo que se acaba antes, de a un bulto por vuelta. */
+function plata(){
+  var p=S.presupuesto; if(!p||p.fecha!==hoyISO()||!(p.monto>0)) return null;
+  if(p.moneda==='bs') return S.tasa>0?{usd:p.monto/S.tasa,monto:p.monto,moneda:'bs'}:null;
+  return {usd:p.monto,monto:p.monto,moneda:'usd'};
 }
+function urgencia(x){ return x.a.estado==='agotado'?-1:(x.a.cobertura==null?0:x.a.cobertura); }
+function plan(){
+  var h=hoyISO(), items=[], pl=plata(), g={}, fuera=[], total=0, completo=0;
+  S.productos.forEach(function(p){ var a=analizar(p,S,h); if(a.estado==='agotado'||a.estado==='pedir'){ items.push({p:p,a:a,cant:a.sugerido}); completo+=a.sugerido*p.costo; } });
+  if(pl){
+    items.sort(function(x,y){ return urgencia(x)-urgencia(y)||(x.p.nombre<y.p.nombre?-1:1); });
+    var resto=pl.usd, hubo=true; items.forEach(function(x){ x.cant=0; });
+    while(hubo){ hubo=false; items.forEach(function(x){ var e=Math.max(1,x.p.empaque||1), c=e*x.p.costo;
+      if(x.cant+e<=x.a.sugerido&&c<=resto+1e-9){ x.cant+=e; resto-=c; hubo=true; } }); }
+  }
+  items.forEach(function(x){ if(x.cant>0){ var k=x.p.proveedor||'Sin proveedor'; (g[k]=g[k]||[]).push(x); total+=x.cant*x.p.costo; } if(x.cant<x.a.sugerido) fuera.push(x); });
+  return {grupos:g,fuera:fuera,total:total,completo:completo,plata:pl,n:items.length};
+}
+function pedidos(){ return plan().grupos; }
 function mensaje(prov,items){
-  var total=0, l=items.map(function(x){ total+=x.a.sugerido*x.p.costo; return '- '+cant(x.a.sugerido)+' × '+x.p.nombre; });
+  var total=0, l=items.map(function(x){ total+=x.cant*x.p.costo; return '- '+cant(x.cant)+' × '+x.p.nombre; });
   return 'Hola, '+prov+'. Pedido'+(S.bodega?' de '+S.bodega:'')+':\n'+l.join('\n')+'\nTotal estimado: '+usd(total);
 }
+function diasUso(n){ var h=hoyISO(); return (S.registro.dias||[]).filter(function(d){ var x=dias(d,h); return x>=0&&x<n; }).length; }
 function informe(){
   var h=hoyISO(), n=0, ceros=0, ult='';
   S.productos.forEach(function(p){ p.conteos.forEach(function(c,i){ n++; if(c.stock<=0&&i>0) ceros++; if(c.fecha>ult) ult=c.fecha; }); });
   var porPedir=S.productos.filter(function(p){ var e=analizar(p,S,h).estado; return e==='agotado'||e==='pedir'; }).length;
-  return 'Informe Reponer'+(S.bodega?' - '+S.bodega:'')+'\nFecha: '+h+'\nEn uso desde: '+S.registro.inicio+' ('+Math.max(0,dias(S.registro.inicio,h))+' días)'+
+  return 'Informe REPIQ'+(S.bodega?' - '+S.bodega:'')+'\nFecha: '+h+'\nEn uso desde: '+S.registro.inicio+' ('+Math.max(0,dias(S.registro.inicio,h))+' días)'+
     '\nProductos: '+S.productos.length+'\nConteos anotados: '+n+(ult?' (último: '+ult+')':'')+'\nPedidos marcados como hechos: '+S.registro.pedidos+
-    '\nVeces que un producto se contó en cero: '+ceros+'\nProductos por pedir hoy: '+porPedir;
+    '\nVeces que un producto se contó en cero: '+ceros+'\nProductos por pedir hoy: '+porPedir+
+    '\nDías con la app abierta en los últimos 7: '+diasUso(7)+'\nVecinos con fiado: '+S.fiado.length+'\nAnotaciones de fiado: '+S.fiado.reduce(function(n,c){return n+c.movs.length;},0);
 }
 
 /* ---------- Mensajes, ventanas y copiado ---------- */
@@ -492,21 +552,84 @@ function limpiarEnlace(){ try{ history.replaceState(null,'',location.pathname); 
 /* ---------- Pantallas ---------- */
 function vacioHTML(icono,titulo,texto,extra){ return '<div class="tarjeta vacio"><div class="dibujo">'+ic(icono,'l')+'</div><h2>'+titulo+'</h2><p>'+texto+'</p>'+(extra||'')+'</div>'; }
 
+var monedaPresu='usd', monedaFiado='usd';
+function tarjetaPlata(P){
+  var p=S.presupuesto&&S.presupuesto.fecha===hoyISO()?S.presupuesto:null, mon=p?p.moneda:monedaPresu, nota;
+  if(P.plata){
+    var sobra=P.plata.usd-P.total, entra=P.n-P.fuera.filter(function(x){return x.cant===0;}).length;
+    nota=P.fuera.length?'Alcanza para '+entra+' de '+P.n+' productos. Va primero lo agotado y lo que se acaba antes; lo demás queda en “No alcanza hoy”.':'Te alcanza para todo el pedido.';
+    if(sobra>0.004) nota+=' Te quedan '+usd(sobra)+(S.tasa>0?' ('+bs(sobra*S.tasa)+')':'')+'.';
+  } else if(mon==='bs'&&!(S.tasa>0)) nota='Para usar bolívares, escribe la tasa del día en Ajustes.';
+  else nota='Escribe cuánto tienes para comprar y REPIQ arma el pedido que más te rinde. Si lo dejas vacío, pide todo lo sugerido.';
+  var pct=P.plata&&P.completo>0?Math.min(100,Math.round(P.total/P.completo*100)):0;
+  return '<section class="tarjeta p" aria-labelledby="tPlata"><h2 id="tPlata">¿Con cuánto cuentas hoy?</h2><div class="presu"><input id="presu" inputmode="decimal" enterkeyhint="done" autocomplete="off" aria-label="Plata disponible hoy para comprar" placeholder="Todo el pedido" value="'+(p?miles(p.monto,p.monto%1?2:0):'')+'">'+
+    (S.tasa>0||mon==='bs'?'<div class="mon" role="group" aria-label="Moneda"><button data-acc="moneda" data-para="presu" data-m="usd" aria-pressed="'+(mon==='usd')+'">$</button><button data-acc="moneda" data-para="presu" data-m="bs" aria-pressed="'+(mon==='bs')+'">Bs</button></div>':'')+'</div>'+
+    (P.plata?'<div class="barra-plata" aria-hidden="true"><i style="width:'+pct+'%"></i></div>':'')+'<p class="nota">'+esc(nota)+'</p></section>';
+}
+/* ---------- Fiado ---------- */
+function saldo(c){ return c.movs.reduce(function(s,m){ return s+(m.tipo==='fio'?m.usd:-m.usd); },0); }
+function ultimo(c,tipo){ var f=''; c.movs.forEach(function(m){ if((!tipo||m.tipo===tipo)&&m.fecha>f) f=m.fecha; }); return f; }
+function dosMonedas(v){ return usd(v)+(S.tasa>0?' · '+bs(v*S.tasa):''); }
+function vecino(id){ return S.fiado.filter(function(c){return c.id===id;})[0]; }
+function mensajeCobro(c){ var v=saldo(c); return 'Hola, '+c.nombre+'. Te escribo de '+(S.bodega||'la bodega')+'. Tienes pendiente '+usd(v)+(S.tasa>0?' ('+bs(v*S.tasa)+' a la tasa de hoy)':'')+'. Cuando puedas pasar, te lo agradezco.'; }
+function vistaFiado(){
+  var h=hoyISO(), deben=S.fiado.filter(function(c){return saldo(c)>0.004;}).sort(function(a,b){return saldo(b)-saldo(a);}), resto=S.fiado.filter(function(c){return saldo(c)<=0.004;});
+  var total=deben.reduce(function(s,c){return s+saldo(c);},0);
+  var html='<h1 class="vt" tabindex="-1">Fiado</h1>';
+  html+='<section class="heroe" aria-label="Resumen del fiado"><span class="fecha">Por cobrar</span><div><div class="grande">'+usd(total)+'</div>'+(S.tasa>0?'<div class="frase">'+bs(total*S.tasa)+'</div>':'')+'</div>'+
+    '<div class="costo">'+(deben.length?pl(deben.length,'vecino te debe','vecinos te deben'):'Nadie te debe nada')+'</div></section>';
+  html+='<form id="fFiado" class="tarjeta p" novalidate><h2>Anotar</h2><datalist id="vecinos">'+S.fiado.map(function(c){return '<option value="'+esc(c.nombre)+'">';}).join('')+'</datalist>'+
+    '<label class="campo">Vecino<input id="fNombre" list="vecinos" autocomplete="off" maxlength="40" placeholder="Nombre"></label>'+
+    '<label class="campo">Monto<div class="presu"><input id="fMonto" inputmode="decimal" autocomplete="off" placeholder="0">'+
+    (S.tasa>0?'<span class="mon" role="group" aria-label="Moneda"><button type="button" data-acc="moneda" data-para="fiado" data-m="usd" aria-pressed="'+(monedaFiado==='usd')+'">$</button><button type="button" data-acc="moneda" data-para="fiado" data-m="bs" aria-pressed="'+(monedaFiado==='bs')+'">Bs</button></span>':'')+'</div></label>'+
+    '<label class="campo">Qué se llevó <small>Opcional</small><input id="fNota" autocomplete="off" maxlength="60" placeholder="Harina y café"></label>'+
+    '<div class="fila-b"><button class="btn" type="submit">'+ic('fiado','s')+'Le fié</button><button class="btn sec" type="button" data-acc="fiadoPago">'+ic('plata','s')+'Me pagó</button></div></form>';
+  if(!S.fiado.length) return html+vacioHTML('fiado','Tu cuaderno de fiado, en el teléfono','Anota quién se llevó qué y cuánto te debe. Cuando toque cobrar, le escribes por WhatsApp con un toque.');
+  if(deben.length) html+='<h2 class="seccion">Te deben</h2><div class="tarjeta">'+deben.map(function(c){ var u=ultimo(c,'fio');
+    return '<button class="vecino" data-acc="vecino" data-id="'+c.id+'"><span class="avatar" aria-hidden="true">'+esc(iniciales(c.nombre))+'</span><div class="t"><b>'+esc(c.nombre)+'</b><small>'+(u?'Último fiado: '+hace(Math.max(0,dias(u,h))):'')+'</small></div><div class="debe">'+usd(saldo(c))+(S.tasa>0?'<small>'+bs(saldo(c)*S.tasa)+'</small>':'')+'</div></button>'; }).join('')+'</div>';
+  if(resto.length) html+='<details class="tarjeta p"><summary>Al día ('+resto.length+')</summary>'+resto.map(function(c){ var v=saldo(c);
+    return '<button class="vecino" data-acc="vecino" data-id="'+c.id+'"><div class="t"><b>'+esc(c.nombre)+'</b><small>'+(v<-0.004?'Tiene saldo a favor':'No debe nada')+'</small></div><div class="debe'+(v<-0.004?' favor':'')+'">'+usd(Math.abs(v))+'</div></button>'; }).join('')+'</details>';
+  return html;
+}
+function hojaVecino(id){
+  var c=vecino(id); if(!c) return; var v=saldo(c), tel=String(c.tel||'').replace(/\D/g,'');
+  var movs=c.movs.slice().reverse().map(function(m){ return '<div class="mov"><div>'+fechaCorta(m.fecha)+(m.nota?' <span>· '+esc(m.nota)+'</span>':'')+'</div><b class="'+m.tipo+'">'+(m.tipo==='fio'?'Fió ':'Pagó ')+usd(m.usd)+'</b></div>'; }).join('');
+  abrir('<div class="hoja-cab"><h2>'+esc(c.nombre)+'</h2><button class="cerrar" data-acc="cerrar" aria-label="Cerrar" data-foco>'+ic('cerrar')+'</button></div>'+
+    '<p class="sub">'+(v>0.004?'Debe <b>'+dosMonedas(v)+'</b>':v<-0.004?'Tiene <b>'+usd(-v)+'</b> a favor':'No debe nada')+'</p>'+
+    (v>0.004?'<div class="fila-b">'+(tel?'<a class="btn" target="_blank" rel="noopener" href="https://wa.me/'+tel+'?text='+encodeURIComponent(mensajeCobro(c))+'">'+ic('chat','s')+'Cobrar por WhatsApp</a>':'<button class="btn" data-acc="copiarCobro" data-id="'+c.id+'">'+ic('copiar','s')+'Copiar cobro</button>')+
+      '<button class="btn sec" data-acc="pagoTotal" data-id="'+c.id+'">Me pagó todo</button></div>':'')+
+    '<label class="campo">WhatsApp del vecino <small>Con código de país. Opcional.</small><input inputmode="tel" autocomplete="off" data-vtel="'+c.id+'" value="'+esc(c.tel||'')+'" placeholder="58 412 0000000"></label>'+
+    '<div><p class="seccion" style="padding:0 0 4px">Anotaciones</p>'+(movs||'<p class="nota">Sin anotaciones.</p>')+'</div>'+
+    '<div class="fila-b">'+(c.movs.length?'<button class="btn sec" data-acc="deshacerMov" data-id="'+c.id+'">Borrar la última anotación</button>':'')+'<button class="btn pel" data-acc="borrarVecino" data-id="'+c.id+'">Borrar vecino</button></div>');
+}
+function anotarFiado(tipo){
+  var nombre=$('fNombre').value.trim(), mt=$('fMonto'), monto=num(mt.value,null), nota=$('fNota').value.trim();
+  if(!nombre){ $('fNombre').classList.add('mal'); $('fNombre').focus(); toast('Escribe el nombre del vecino.','alerta'); return; }
+  if(!(monto>0)){ mt.classList.add('mal'); mt.focus(); toast('Escribe un monto mayor que cero.','alerta'); return; }
+  var enBs=monedaFiado==='bs'&&S.tasa>0, v=enBs?monto/S.tasa:monto;
+  var c=S.fiado.filter(function(x){return x.nombre.toLowerCase()===nombre.toLowerCase();})[0];
+  if(!c){ if(tipo==='pago'){ $('fNombre').classList.add('mal'); toast(nombre+' no tiene fiado anotado.','alerta'); return; } c={id:uid(),nombre:nombre.slice(0,40),tel:'',movs:[]}; S.fiado.push(c); }
+  var m={fecha:hoyISO(),tipo:tipo,usd:Math.round(v*100)/100,nota:nota}; if(enBs) m.bs=monto; c.movs.push(m);
+  S.ejemplo=false; var ok=guardar(); pintar(); var sd=saldo(c);
+  if(ok) toast((tipo==='fio'?'Anotado: le fiaste '+usd(m.usd)+' a ':'Anotado: pagó '+usd(m.usd)+' ')+c.nombre+'. '+(sd>0.004?'Debe '+usd(sd)+'.':'Está al día.'));
+  var f=$('fNombre'); if(f) f.focus();
+}
 function vistaPedido(an){
-  var h=hoyISO(), g=pedidos(), ks=Object.keys(g).sort(), ped=an.filter(function(x){return x.a.estado==='agotado'||x.a.estado==='pedir';});
-  var costo=ped.reduce(function(s,x){return s+x.a.sugerido*x.p.costo;},0);
+  var h=hoyISO(), P=plan(), g=P.grupos, ks=Object.keys(g).sort(), ped=an.filter(function(x){return x.a.estado==='agotado'||x.a.estado==='pedir';});
+  var costo=P.total;
   var agot=an.filter(function(x){return x.a.estado==='agotado'||x.a.previo==='agotado';}).length, cam=an.filter(function(x){return x.a.estado==='camino';}), pr=an.filter(function(x){return x.a.estado==='pronto';});
   var html='<h1 class="vt" tabindex="-1">Pedido de hoy</h1>', sinTel=0;
-  if(!S.productos.length) return html+vacioHTML('caja','Todavía no hay productos','Agrega los 10 que más vendes. Con dos conteos, Reponer te dice qué pedir.','<button class="btn" data-tab="productos">Agregar productos</button>');
+  if(!S.productos.length) return html+vacioHTML('caja','Todavía no hay productos','Agrega los 10 que más vendes. Con dos conteos, REPIQ te dice qué pedir.','<button class="btn" data-tab="productos">Agregar productos</button>');
   html+='<section class="heroe" aria-label="Resumen del día"><span class="fecha">'+esc(fechaLarga(h).replace(/^./,function(c){return c.toUpperCase();}))+'</span>'+
-    (ped.length?'<div><div class="grande">'+ped.length+'</div><div class="frase">'+(ped.length===1?'producto por pedir hoy':'productos por pedir hoy')+'</div></div><div class="costo">Costo del pedido <b>'+usd(costo)+'</b>'+(S.tasa>0?' · '+bs(costo*S.tasa):'')+'</div>'
+    (ped.length?'<div><div class="grande">'+ped.length+'</div><div class="frase">'+(ped.length===1?'producto por pedir hoy':'productos por pedir hoy')+'</div></div><div class="costo">'+(P.plata?'Con tu plata de hoy ':'Costo del pedido ')+'<b>'+usd(costo)+'</b>'+(S.tasa>0?' · '+bs(costo*S.tasa):'')+(P.plata&&P.completo>costo+1e-9?' de '+usd(P.completo):'')+'</div>'
                :'<div><div class="frase" style="font-size:1.5rem;line-height:1.2">Hoy no hace falta pedir nada</div></div><div class="costo">Vuelve a contar en unos días para mantener el cálculo al día.</div>')+
-    '<div class="datos"><div><b>'+agot+'</b><span>'+(agot===1?'agotado':'agotados')+'</span></div><div><b>'+cam.length+'</b><span>en camino</span></div><div><b>'+ks.length+'</b><span>'+(ks.length===1?'proveedor':'proveedores')+'</span></div></div></section>';
+    '<div class="datos"><div><b>'+agot+'</b><span>'+(agot===1?'agotado':'agotados')+'</span></div><div><b>'+cam.length+'</b><span>en camino</span></div><div><b>'+ks.length+'</b><span>'+(ks.length===1?'proveedor':'proveedores')+'</span></div></div></section>'+
+    (ped.length?tarjetaPlata(P):'');
   ks.forEach(function(k){
     var t=0, tel=String(S.telefonos[k]||'').replace(/\D/g,'');
-    var filas=g[k].map(function(x){ t+=x.a.sugerido*x.p.costo;
+    var filas=g[k].map(function(x){ t+=x.cant*x.p.costo;
       return '<div class="item"><div class="t"><b>'+esc(x.p.nombre)+'</b><small><span class="pill '+x.a.estado+'">'+etiqueta(x.a.estado)+'</span>'+(x.a.estado==='agotado'?'No queda nada':quedan(x)+', '+cubre(x.a))+'</small></div>'+
-        '<div class="cant"><b>'+cant(x.a.sugerido)+'</b><small>'+usd(x.a.sugerido*x.p.costo)+'</small></div></div>'; }).join('');
+        '<div class="cant"><b>'+cant(x.cant)+'</b><small>'+(x.cant<x.a.sugerido?'de '+cant(x.a.sugerido)+' · ':'')+usd(x.cant*x.p.costo)+'</small></div></div>'; }).join('');
     var min=num(S.minimos[k],0);
     html+='<article class="tarjeta" data-prov="'+esc(k)+'"><div class="prov-cab"><span class="avatar" aria-hidden="true">'+esc(iniciales(k))+'</span><div><h2>'+esc(k)+'</h2><small>'+pl(g[k].length,'producto','productos')+' · '+usd(t)+(S.tasa>0?' · '+bs(t*S.tasa):'')+'</small></div></div>'+filas+
       (min>0&&t<min?'<p class="minimo">Faltan '+usd(min-t)+' para el pedido mínimo de '+usd(min)+' de este proveedor.</p>':'')+
@@ -516,6 +639,8 @@ function vistaPedido(an){
     if(!tel) sinTel++;
   });
   if(sinTel) html+='<p class="nota">'+ic('chat','s')+' Guarda el WhatsApp de tus proveedores en Ajustes y el botón abrirá directo su chat.</p>';
+  if(P.plata&&P.fuera.length) html+='<h2 class="seccion">No alcanza hoy</h2><div class="tarjeta">'+P.fuera.map(function(x){ var falta=x.a.sugerido-x.cant;
+    return '<div class="item fuera"><div class="t"><b>'+esc(x.p.nombre)+'</b><small>'+esc(x.p.proveedor||'Sin proveedor')+' · '+(x.cant?'faltan '+cant(falta)+' para lo sugerido':'no entró en el pedido')+'</small></div><div class="cant"><b>'+cant(falta)+'</b><small>'+usd(falta*x.p.costo)+'</small></div></div>'; }).join('')+'</div>';
   if(cam.length) html+='<h2 class="seccion">En camino</h2><div class="tarjeta">'+cam.map(function(x){ var q=x.p.pendiente;
     return '<div class="item" style="flex-wrap:wrap"><div class="t"><b>'+esc(x.p.nombre)+'</b><small>'+cant(q.cantidad)+' pedidas el '+fechaCorta(q.fecha)+' · '+esc(x.p.proveedor||'Sin proveedor')+
       (x.a.atraso>0?' <span class="pill agotado">Debió llegar hace '+pl(x.a.atraso,'día','días')+'</span>':'')+'</small></div>'+
@@ -573,7 +698,7 @@ function vistaAjustes(){
     '<label class="campo todo">Nombre del negocio<input id="aBodega" data-aj="bodega" autocomplete="off" maxlength="60" value="'+esc(S.bodega)+'" placeholder="Abasto La Esquina"><small>Aparece en el mensaje del pedido.</small></label>'+
     '<label class="campo">Tasa del día<input id="aTasa" data-aj="tasa" inputmode="decimal" autocomplete="off" value="'+(S.tasa?miles(S.tasa,2):'')+'" placeholder="Sin tasa"><small>Bolívares por 1 dólar.</small></label>'+
     '<label class="campo">Días que cubre cada pedido<input id="aCob" data-aj="cobertura" inputmode="numeric" autocomplete="off" value="'+S.cobertura+'"><small>Más días, pedidos más grandes.</small></label></div>'+
-    '<p class="nota">Los cambios se guardan solos. La tasa la escribes tú: Reponer no la busca en internet.</p></div>';
+    '<p class="nota">Los cambios se guardan solos. La tasa la escribes tú: REPIQ no la busca en internet.</p></div>';
   if(pv.length) html+='<div class="tarjeta p"><h2>WhatsApp de tus proveedores</h2><p class="nota">Con el número guardado, “Enviar por WhatsApp” abre directo su chat. Escríbelo con código de país.</p>'+pv.map(function(n,i){
     return '<label class="campo">'+esc(n)+'<input id="tel-'+i+'" inputmode="tel" autocomplete="off" data-tel="'+esc(n)+'" value="'+esc(S.telefonos[n]||'')+'" placeholder="58 412 0000000"></label>'; }).join('')+'</div>';
   html+='<div class="tarjeta p"><h2>Apariencia</h2><div class="opciones" role="group" aria-label="Tema">'+
@@ -581,19 +706,19 @@ function vistaAjustes(){
     '<div class="tarjeta p"><h2>Respaldo</h2><div class="privado">'+ic('escudo')+'<span>Tus datos están solo en este teléfono. Haz un respaldo cada semana para no perderlos.</span></div>'+
     '<button class="btn ancho" data-acc="copiarResp">'+ic('copiar','s')+'Copiar respaldo</button><p class="nota">Pégalo en un chat de WhatsApp contigo mismo. Para recuperar tus datos, pega aquí ese texto:</p>'+
     '<textarea id="respaldo" aria-label="Texto del respaldo para restaurar" placeholder="Pega aquí tu respaldo"></textarea><button class="btn sec ancho" data-acc="restaurar">Restaurar este respaldo</button></div>'+
-    '<div class="tarjeta p"><h2>Informe de uso</h2><p class="nota">Resume cuánto has usado Reponer. No incluye precios ni nombres de productos.</p>'+
+    '<div class="tarjeta p"><h2>Informe de uso</h2><p class="nota">Resume cuánto has usado REPIQ. No incluye precios ni nombres de productos.</p>'+
     '<textarea id="informe" aria-label="Informe de uso" readonly>'+esc(informe())+'</textarea><button class="btn sec ancho" data-acc="copiarInforme">'+ic('copiar','s')+'Copiar informe</button></div>'+
-    (window.REPONER_SITIO?'<div class="tarjeta p"><h2>¿Prefieres que te la dejemos lista?</h2><p class="nota">Vamos a tu negocio, cargamos tus productos y te enseñamos a usarla.</p><a class="btn sec ancho" href="negocios/">Ver Reponer Instalado</a></div>':'')+
+    (window.REPONER_SITIO?'<div class="tarjeta p"><h2>¿Prefieres que te la dejemos lista?</h2><p class="nota">Vamos a tu negocio, cargamos tus productos y te enseñamos a usarla.</p><a class="btn sec ancho" href="negocios/">Ver REPIQ Instalado</a></div>':'')+
     '<div class="tarjeta p"><h2>Tenerla en la pantalla de inicio</h2><ol class="lista-pasos"><li>Abre el menú del navegador: los tres puntos, o Compartir en iPhone.</li><li>Toca “Agregar a pantalla de inicio”.</li><li>Ábrela desde ese ícono. Funciona aunque no haya internet.</li></ol></div>'+
-    '<div class="tarjeta p" id="compartir"><h2>Comparte Reponer</h2><p class="nota">Muéstrale este código a otro negocio. Lo escanea con la cámara de su teléfono y se le abre la app. Funciona aunque tú no tengas internet.</p>'+
-    '<div class="qr-caja"><svg role="img" aria-label="Código QR que abre Reponer"><use href="#i-qr"/></svg></div><p class="enlace-txt">'+SITIO.replace('https://','').replace(/\/$/,'')+'</p>'+
+    '<div class="tarjeta p" id="compartir"><h2>Comparte REPIQ</h2><p class="nota">Muéstrale este código a otro negocio. Lo escanea con la cámara de su teléfono y se le abre la app. Funciona aunque tú no tengas internet.</p>'+
+    '<div class="qr-caja"><svg role="img" aria-label="Código QR que abre REPIQ"><use href="#i-qr"/></svg></div><p class="enlace-txt">'+SITIO.replace('https://','').replace(/\/$/,'')+'</p>'+
     '<div class="fila-b"><button class="btn" data-acc="verQR">Ampliar</button><button class="btn sec" data-acc="copiarEnlace">'+ic('copiar','s')+'Copiar enlace</button></div></div>'+
-    '<div class="tarjeta p"><div class="sobre"><svg aria-hidden="true"><use href="#i-logo"/></svg><div><h2>Sobre Reponer</h2><p class="nota">Versión '+VERSION+'</p></div></div>'+
-    '<p class="sub">Reponer ayuda a bodegas y abastos a no quedarse sin lo que más venden. Es gratis: no tiene anuncios, no pide cuenta y no envía tus datos a ningún lado.</p>'+
+    '<div class="tarjeta p"><div class="sobre"><svg aria-hidden="true"><use href="#i-logo"/></svg><div><h2>Sobre REPI<span class="q">Q</span></h2><p class="nota">Versión '+VERSION+'</p></div></div>'+
+    '<p class="sub"><b>Sé qué reponer, cuánto y a quién, con la plata que tengo hoy.</b></p><p class="sub">REPIQ ayuda a bodegas y abastos a no quedarse sin lo que más venden. Es gratis: no tiene anuncios, no pide cuenta y no envía tus datos a ningún lado.</p>'+
     '<p class="sub">La creó '+(CONTACTO.nombre?esc(CONTACTO.nombre)+', ':'un ')+'estudiante de Ingeniería de Operaciones y Logística en '+esc(CONTACTO.zona||'Caracas')+', Venezuela, con apoyo de inteligencia artificial.</p>'+
-    '<div class="fila-b">'+(wa?'<a class="btn sec" target="_blank" rel="noopener" href="https://wa.me/'+wa+'?text='+encodeURIComponent('Hola, te escribo por Reponer.')+'">'+ic('chat','s')+'Escribir por WhatsApp</a>':'')+
+    '<div class="fila-b">'+(wa?'<a class="btn sec" target="_blank" rel="noopener" href="https://wa.me/'+wa+'?text='+encodeURIComponent('Hola, te escribo por REPIQ.')+'">'+ic('chat','s')+'Escribir por WhatsApp</a>':'')+
     '<a class="btn sec" target="_blank" rel="noopener" href="'+SITIO+'negocios/">Página del proyecto</a><button class="btn sec" data-acc="verBienvenida">Ver la bienvenida</button></div>'+
-    '<p class="nota" id="derechos">© 2026 Reponer. Todos los derechos reservados. No se permite copiar ni reutilizar esta aplicación sin permiso por escrito.</p></div>'+
+    '<p class="nota" id="derechos">© 2026 REPIQ. Todos los derechos reservados. No se permite copiar ni reutilizar esta aplicación sin permiso por escrito.</p></div>'+
     '<button class="btn pel ancho" data-acc="borrarTodo">Borrar todos los datos</button>';
   return html;
 }
@@ -607,7 +732,7 @@ function pintar(foco){
   if(!ac.hidden) ac.innerHTML='<div><b>Tu último conteo fue hace '+sinContar+' días</b>Cuenta hoy para que el pedido sea confiable.</div><button class="mini" data-tab="conteo">Contar ahora</button>';
   var nPed=an.filter(function(x){return x.a.estado==='agotado'||x.a.estado==='pedir';}).length, pp=$('puntoPedido'); pp.hidden=!nPed||tab==='pedido'; pp.textContent=nPed;
   [].forEach.call(document.querySelectorAll('.tabs button'),function(b){ if(b.dataset.tab===tab) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); });
-  $('vista').innerHTML=tab==='pedido'?vistaPedido(an):tab==='conteo'?vistaConteo(an):tab==='productos'?vistaProductos(an):vistaAjustes();
+  $('vista').innerHTML=tab==='pedido'?vistaPedido(an):tab==='fiado'?vistaFiado():tab==='conteo'?vistaConteo(an):tab==='productos'?vistaProductos(an):vistaAjustes();
   if(tab==='conteo'){ progreso(); filtrar('conteo'); } if(tab==='productos') filtrar('productos');
   if(foco){ window.scrollTo(0,0); var t=document.querySelector('.vt'); if(t){ try{ t.focus({preventScroll:true}); }catch(e){} } }
 }
@@ -635,8 +760,8 @@ function formProducto(id){
 }
 
 /* ---------- Bienvenida ---------- */
-var PASOS=[['contar','Cuenta tu estante','Dos veces por semana anotas cuántas unidades te quedan. Son unos 2 minutos.'],
-  ['lista','Reponer te dice qué pedir','Calcula cuánto vendes por día y te avisa qué pedir, cuánto y a qué proveedor. El pedido sale escrito para WhatsApp.'],
+var PASOS=[['fiado','Anota el fiado en segundos','Quién se llevó qué y cuánto te debe. Cuando toque cobrar, le escribes por WhatsApp con un toque.'],
+  ['lista','Sabe qué reponer, cuánto y a quién','Cuenta tu estante dos veces por semana. Dile a REPIQ cuánta plata tienes hoy y arma el pedido que más te rinde, listo para WhatsApp.'],
   ['escudo','Tus datos son tuyos','Todo se guarda solo en este teléfono. Sin cuentas, sin anuncios, y funciona sin internet.']];
 var repaso=false;
 function bienvenida(i){
@@ -694,7 +819,7 @@ document.addEventListener('click',function(ev){
   else if(a==='copiar'){ var its=pedidos()[k]; if(its) copiar(mensaje(k,its),'Pedido copiado'); }
   else if(a==='yaPedi'){
     var lista=pedidos()[k]||[], h0=hoyISO(); if(!lista.length) return;
-    lista.forEach(function(x){ x.p.pendiente={fecha:h0,cantidad:x.a.sugerido}; });
+    lista.forEach(function(x){ x.p.pendiente={fecha:h0,cantidad:x.cant}; });
     S.registro.pedidos++; delete enviado[k]; if(guardar()) toast('Anotado. Cuando llegue, toca “Llegó”.'); pintar();
   }
   else if(a==='llego'||a==='cancelarPed'){
@@ -703,6 +828,19 @@ document.addEventListener('click',function(ev){
     if(guardar()) toast(a==='llego'?'Mercancía sumada. Cuenta el estante cuando puedas.':'Pedido cancelado'); pintar();
   }
   else if(a==='guardarConteo'){ guardarConteo(); }
+  else if(a==='moneda'){
+    if(t.dataset.para==='fiado'){ monedaFiado=t.dataset.m; [].forEach.call(t.parentNode.children,function(b){ b.setAttribute('aria-pressed',b===t); }); return; }
+    monedaPresu=t.dataset.m; if(S.presupuesto){ S.presupuesto.moneda=t.dataset.m; guardar(); } pintar(); var ip=$('presu'); if(ip) ip.focus();
+  }
+  else if(a==='fiadoPago'){ anotarFiado('pago'); }
+  else if(a==='vecino'){ hojaVecino(id); }
+  else if(a==='copiarCobro'){ var cv=vecino(id); if(cv) copiar(mensajeCobro(cv),'Mensaje de cobro copiado'); }
+  else if(a==='pagoTotal'){ var cp=vecino(id); if(!cp) return; var sp=saldo(cp);
+    confirmar({titulo:'¿'+cp.nombre+' pagó todo?',texto:'Se anota un pago de '+dosMonedas(sp)+' con fecha de hoy.',ok:'Sí, pagó todo',si:function(){ cp.movs.push({fecha:hoyISO(),tipo:'pago',usd:Math.round(sp*100)/100,nota:''}); if(guardar()) toast(cp.nombre+' está al día.'); pintar(); }}); }
+  else if(a==='deshacerMov'){ var cd=vecino(id); if(!cd||!cd.movs.length) return; var um=cd.movs[cd.movs.length-1];
+    confirmar({titulo:'¿Borrar la última anotación?',texto:(um.tipo==='fio'?'Fiado de ':'Pago de ')+usd(um.usd)+' del '+fechaCorta(um.fecha)+'.',ok:'Sí, borrar',peligro:true,si:function(){ cd.movs.pop(); if(guardar()) toast('Anotación borrada'); pintar(); hojaVecino(id); }}); }
+  else if(a==='borrarVecino'){ var cb=vecino(id); if(!cb) return;
+    confirmar({titulo:'¿Borrar a '+cb.nombre+'?',texto:'Se borran todas sus anotaciones de fiado. No se puede deshacer.',ok:'Sí, borrar',peligro:true,si:function(){ S.fiado=S.fiado.filter(function(c){return c.id!==id;}); if(guardar()) toast('Vecino borrado'); pintar(); }}); }
   else if(a==='nuevo'){ formProducto(null); }
   else if(a==='editar'){ formProducto(id); }
   else if(a==='rapido'){
@@ -733,13 +871,13 @@ document.addEventListener('click',function(ev){
   else if(a==='copiarInforme'){ copiar(informe(),'Informe copiado'); }
   else if(a==='copiarEnlace'){ copiar(SITIO,'Enlace copiado'); }
   else if(a==='verQR'){
-    abrir('<div class="hoja-cab"><h2>Escanea para abrir Reponer</h2><button class="cerrar" data-acc="cerrar" aria-label="Cerrar" data-foco>'+ic('cerrar')+'</button></div>'+
-      '<div class="qr-caja grande"><svg role="img" aria-label="Código QR que abre Reponer"><use href="#i-qr"/></svg></div>'+
+    abrir('<div class="hoja-cab"><h2>Escanea para abrir REPIQ</h2><button class="cerrar" data-acc="cerrar" aria-label="Cerrar" data-foco>'+ic('cerrar')+'</button></div>'+
+      '<div class="qr-caja grande"><svg role="img" aria-label="Código QR que abre REPIQ"><use href="#i-qr"/></svg></div>'+
       '<p class="sub" style="text-align:center">Apunta la cámara del otro teléfono a este código.</p><p class="enlace-txt">'+SITIO.replace('https://','').replace(/\/$/,'')+'</p>');
   }
   else if(a==='restaurar'){
     var txt=$('respaldo').value.trim(), o=null; try{ o=sanear(JSON.parse(txt)); }catch(e){}
-    if(!o){ toast(txt?'Ese texto no es un respaldo de Reponer.':'Pega primero el texto de tu respaldo.','alerta'); return; }
+    if(!o){ toast(txt?'Ese texto no es un respaldo de REPIQ.':'Pega primero el texto de tu respaldo.','alerta'); return; }
     confirmar({titulo:'¿Restaurar este respaldo?',texto:'Tiene '+pl(o.productos.length,'producto','productos')+'. Reemplaza lo que hay ahora en este teléfono ('+pl(S.productos.length,'producto','productos')+').',ok:'Sí, restaurar',si:function(){
       S=o; borrador={}; enviado={}; var ok=guardar(); tab='pedido'; pintar(true); if(ok) toast('Respaldo restaurado'); }});
   }
@@ -754,6 +892,7 @@ document.addEventListener('input',function(ev){
 });
 document.addEventListener('keydown',function(ev){
   if(ev.key==='Escape'&&!$('capa').hidden&&$('capa').dataset.cerrable){ cerrar(); return; }
+  if(ev.key==='Enter'&&ev.target.id==='presu'){ ev.preventDefault(); ev.target.blur(); return; }
   var i=ev.target;
   if(ev.key==='Enter'&&(i.dataset.hay||i.dataset.llego)){
     ev.preventDefault();
@@ -770,9 +909,17 @@ document.addEventListener('change',function(ev){
     else if(i.dataset.aj==='cobertura'){ var co=Math.round(num(i.value,0)); if(co<1||co>60){ i.classList.add('mal'); toast('Escribe un número de días entre 1 y 60.','alerta'); i.value=S.cobertura; return; } S.cobertura=co; i.value=co; }
     if(guardar()) toast('Guardado'); $('negocio').textContent=S.bodega||'';
   }
+  else if(i.id==='presu'){
+    var tx=i.value.trim(), mo=num(tx,null);
+    if(tx===''){ delete S.presupuesto; guardar(); pintar(); return; }
+    if(!(mo>0)){ i.classList.add('mal'); toast('Escribe la plata solo con números.','alerta'); return; }
+    S.presupuesto={monto:mo,moneda:S.presupuesto&&S.presupuesto.fecha===hoyISO()?S.presupuesto.moneda:monedaPresu,fecha:hoyISO()}; guardar(); pintar();
+  }
+  else if(i.dataset.vtel){ var cv2=vecino(i.dataset.vtel); if(cv2){ cv2.tel=i.value.trim(); if(guardar()) toast('Guardado'); } }
   else if(i.dataset.tel!==undefined&&i.dataset.tel!==''){ S.telefonos[i.dataset.tel]=i.value.trim(); if(guardar()) toast('Guardado'); }
 });
 document.addEventListener('submit',function(ev){
+  if(ev.target.id==='fFiado'){ ev.preventDefault(); anotarFiado('fio'); return; }
   if(ev.target.id!=='fProd') return; ev.preventDefault();
   var id=ev.target.dataset.id, nombre=$('pNombre').value.trim(), err=$('ePNombre');
   var repetido=S.productos.filter(function(x){ return x.id!==id&&x.nombre.toLowerCase()===nombre.toLowerCase(); })[0];
@@ -792,7 +939,9 @@ function red(){ $('sinRed').hidden=navigator.onLine!==false; }
 window.addEventListener('online',red); window.addEventListener('offline',red);
 
 /* ---------- Arranque ---------- */
-aplicarTema(); S=cargar(); pintar(); red();
+aplicarTema(); S=cargar();
+if(!S.ejemplo){ var hoyU=hoyISO(); if(S.registro.dias.indexOf(hoyU)<0){ S.registro.dias.push(hoyU); S.registro.dias=S.registro.dias.slice(-60); guardar(); } }
+pintar(); red();
 if(habiaDatos) escribir(K_BIEN,'1'); else if(!leer(K_BIEN)){ repaso=false; bienvenida(0); }
 try{ iniciarCatalogos(); }catch(e){}
 </script>
