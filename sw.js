@@ -1,5 +1,5 @@
 // Guarda la app en el teléfono para que abra sin internet.
-var CACHE = 'reponer-v4';
+var CACHE = 'repiq-v5';
 var ARCHIVOS = ['./', 'index.html', 'manifest.webmanifest', 'icon.svg', 'icon-192.png', 'contacto.js'];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(ARCHIVOS); }).then(function () { return self.skipWaiting(); }));

@@ -29,21 +29,21 @@ def main():
     if cat.get("minimo"): detalles.append(f"pedido mínimo ${cat['minimo']:g}")
     pagina = f"""<!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reponer: volante de {nombre}</title>
+<title>REPIQ: volante de {nombre}</title>
 <style>
 @page{{size:letter;margin:14mm}}
 *{{box-sizing:border-box}}
-body{{margin:0 auto;max-width:180mm;padding:8mm;font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#14231f;background:#fff}}
-.marca{{font-size:22px;font-weight:800;margin:0}} .marca span{{background:#ffd84a;padding:0 .2em;border-radius:4px}}
+body{{margin:0 auto;max-width:180mm;padding:8mm;font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#0b1230;background:#fff}}
+.marca{{font-size:22px;font-weight:800;margin:0}} .marca span{{background:#c4f27e;padding:0 .2em;border-radius:4px}}
 h1{{font-size:34px;line-height:1.15;margin:10px 0 6px;letter-spacing:-.01em}}
-.sub{{font-size:19px;margin:0 0 18px;font-weight:600;color:#0b5d4b}}
-.fila{{display:flex;gap:22px;align-items:center;border:2px solid #0b5d4b;border-radius:10px;padding:16px;margin-bottom:18px}}
+.sub{{font-size:19px;margin:0 0 18px;font-weight:600;color:#0b4fc4}}
+.fila{{display:flex;gap:22px;align-items:center;border:2px solid #0b4fc4;border-radius:10px;padding:16px;margin-bottom:18px}}
 .qr{{width:52mm;height:52mm;flex:none}} .url{{font:600 13px ui-monospace,Menlo,Consolas,monospace;word-break:break-all}}
-h2{{font-size:18px;margin:18px 0 8px;color:#0b5d4b}}
+h2{{font-size:18px;margin:18px 0 8px;color:#0b4fc4}}
 ol{{margin:0;padding-left:1.3em}} li{{margin-bottom:7px}}
-.caja{{background:#f3f6f4;border-radius:8px;padding:12px 14px;margin-top:16px}}
+.caja{{background:#f1f4fa;border-radius:8px;padding:12px 14px;margin-top:16px}}
 </style></head><body>
-<p class="marca">Re<span>poner</span></p>
+<p class="marca">REPI<span>Q</span></p>
 <h1>Pídale a {nombre} sin que se le acabe nada</h1>
 <p class="sub">{html.escape(", ".join(detalles).capitalize())}.</p>
 <div class="fila"><div class="qr">{qr_svg(url)}</div><div>

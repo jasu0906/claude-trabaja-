@@ -75,7 +75,7 @@ function servir() {
 
   // 2. Bienvenida de tres pasos y bodega de ejemplo
   assert.ok(await pg.locator('#capa [role=dialog]').isVisible());
-  assert.ok((await texto(pg, '#capa')).includes('Cuenta tu estante'));
+  assert.ok((await texto(pg, '#capa')).includes('Anota el fiado en segundos'));
   await pg.keyboard.press('Escape');
   assert.ok(await pg.locator('#capa').isVisible(), 'la primera bienvenida no se cierra con Escape');
   await pg.click('[data-acc="bienSig"]'); await pg.click('[data-acc="bienSig"]');
@@ -203,6 +203,39 @@ function servir() {
   await pg.fill('#respaldo', resp); await pg.click('[data-acc="restaurar"]'); await confirmar(pg);
   assert.deepStrictEqual(await pg.evaluate(() => [S.productos.length, S.bodega, S.tasa]), [1, 'Abasto Prueba', 100]);
 
+  // Fiado: anotar en segundos, pagar, cobrar y respaldo
+  await pg.click('[data-tab="fiado"]');
+  assert.ok((await texto(pg, '#vista')).includes('Tu cuaderno de fiado'));
+  await pg.fill('#fNombre', 'María'); await pg.fill('#fMonto', '5,50'); await pg.press('#fMonto', 'Enter');
+  assert.ok((await texto(pg, '#toast')).includes('le fiaste $5,50 a María'));
+  assert.strictEqual(await pg.evaluate(() => document.activeElement.id), 'fNombre', 'queda listo para el siguiente');
+  await pg.fill('#fNombre', 'Pedro'); await pg.fill('#fMonto', '1'); await pg.click('[data-acc="fiadoPago"]');
+  assert.ok((await texto(pg, '#toast')).includes('no tiene fiado'));
+  await pg.click('[data-acc="moneda"][data-para="fiado"][data-m="bs"]');
+  await pg.fill('#fNombre', 'maría'); await pg.fill('#fMonto', '200'); await pg.click('[data-acc="fiadoPago"]');
+  assert.deepStrictEqual(await pg.evaluate(() => [S.fiado.length, saldo(S.fiado[0]), S.fiado[0].movs[1].bs]), [1, 3.5, 200], 'Bs a la tasa de 100');
+  assert.ok((await texto(pg, '.heroe')).includes('$3,50') && (await texto(pg, '.heroe')).includes('Bs 350,00'));
+  await pg.fill('#fNombre', 'Ana'); await pg.fill('#fMonto', 'cero'); await pg.press('#fMonto', 'Enter');
+  assert.strictEqual(await pg.evaluate(() => S.fiado.length), 1, 'un monto inválido no se anota');
+  await pg.click('[data-acc="vecino"]');
+  await pg.click('[data-acc="copiarCobro"]');
+  assert.ok((await pg.evaluate(() => navigator.clipboard.readText())).startsWith('Hola, María. Te escribo de Abasto Prueba. Tienes pendiente $3,50'));
+  await pg.fill('[data-vtel]', '58 414 7654321'); await pg.locator('[data-vtel]').blur();
+  await pg.keyboard.press('Escape'); await pg.click('[data-acc="vecino"]');
+  assert.ok((await pg.locator('#capa a.btn').getAttribute('href')).startsWith('https://wa.me/584147654321?text=Hola'));
+  await pg.click('[data-acc="pagoTotal"]'); await confirmar(pg);
+  assert.strictEqual(await pg.evaluate(() => Math.abs(saldo(S.fiado[0])) < 1e-9), true);
+  assert.ok((await texto(pg, '#vista')).includes('Al día (1)'));
+  await pg.click('[data-tab="ajustes"]');
+  const inf2 = await pg.inputValue('#informe');
+  assert.ok(inf2.includes('Vecinos con fiado: 1') && inf2.includes('Anotaciones de fiado: 3') && /Días con la app abierta en los últimos 7: \d/.test(inf2), inf2);
+  await pg.click('[data-acc="copiarResp"]');
+  const resp2 = JSON.parse(await pg.evaluate(() => navigator.clipboard.readText()));
+  assert.strictEqual(resp2.fiado[0].movs.length, 3, 'el respaldo incluye el fiado');
+  await pg.evaluate(() => { S.fiado = []; guardar(); pintar(); });
+  await pg.fill('#respaldo', JSON.stringify(resp2)); await pg.click('[data-acc="restaurar"]'); await confirmar(pg);
+  assert.strictEqual(await pg.evaluate(() => S.fiado[0].nombre), 'María');
+
   // Código QR dentro de la app para compartirla
   await pg.click('[data-tab="ajustes"]');
   assert.ok(await pg.locator('#compartir .qr-caja svg').isVisible());
@@ -274,6 +307,26 @@ function servir() {
   await p2.goto(BASE + '?d=no-existe'); await p2.waitForTimeout(300);
   assert.ok(await p2.locator('#catalogoAviso').isHidden());
 
+  // Pedido según la plata de hoy, con la bodega de ejemplo
+  const p6 = await nuevo('2026-11-12'); await p6.goto(BASE); await p6.click('[data-acc="bienSaltar"]');
+  assert.ok((await texto(p6, '#vista')).includes('¿Con cuánto cuentas hoy?'));
+  await p6.fill('#presu', '50'); await p6.press('#presu', 'Enter');
+  // Café agotado: 10 × $2,90 = $29 entra; la harina (20 × $1,10 = $22) ya no cabe en los $21 que quedan
+  assert.strictEqual(await p6.locator('article.tarjeta').count(), 1);
+  const ve = await texto(p6, '#vista');
+  assert.ok(ve.includes('Alcanza para 1 de 4 productos') && ve.includes('Te quedan $21,00') && ve.includes('NO ALCANZA HOY') && ve.includes('Harina de maíz 1 kg'), ve);
+  assert.strictEqual(decodeURIComponent((await p6.locator('a[data-acc="wa"]').getAttribute('href')).split('?text=')[1]),
+    'Hola, Mayorista El Trigal. Pedido de Bodega de ejemplo:\n- 10 × Café 250 g\nTotal estimado: $29,00');
+  assert.ok((await texto(p6, '.heroe')).includes('Con tu plata de hoy $29,00 de $218,30'));
+  await p6.fill('#presu', '100'); await p6.press('#presu', 'Enter');
+  assert.strictEqual(await p6.evaluate(() => plan().total), 78.5, 'café, harina y huevos: 29 + 22 + 27,5');
+  await p6.click('[data-acc="yaPedi"] >> nth=0');
+  assert.ok(await p6.evaluate(() => S.productos.some(p => p.pendiente && p.pendiente.cantidad === 20)), 'Ya lo pedí usa la cantidad que alcanzó');
+  await p6.fill('#presu', ''); await p6.press('#presu', 'Enter');
+  assert.strictEqual(await p6.evaluate(() => S.presupuesto), undefined);
+  await p6.evaluate(() => { S.presupuesto = { monto: 50, moneda: 'usd', fecha: '2026-11-11' }; pintar(); });
+  assert.strictEqual(await p6.inputValue('#presu'), '', 'la plata de ayer no cuenta hoy');
+
   // 11. Datos guardados por la versión anterior se conservan; datos dañados no rompen la app
   const viejo = JSON.stringify({ ejemplo: false, bodega: 'Bodega Vieja', tasa: 36.5, cobertura: 7, telefonos: { 'La Central': '584120000000' }, registro: { inicio: '2026-10-01', pedidos: 3 },
     productos: [{ id: 'a1', nombre: 'Harina', proveedor: 'La Central', costo: 1.1, entrega: 2, empaque: 20, porRecibir: 20, pendiente: { fecha: '2026-11-10', cantidad: 40 },
@@ -289,11 +342,11 @@ function servir() {
   // con el teléfono en modo oscuro, la app sigue abriendo en claro hasta que se elija otra cosa
   const ctxO = await b.newContext({ viewport: { width: 400, height: 800 }, colorScheme: 'dark' });
   const p5 = await ctxO.newPage(); vigilar(p5); await p5.goto(BASE);
-  assert.strictEqual(await p5.evaluate(() => getComputedStyle(document.body).backgroundColor), 'rgb(244, 246, 245)');
+  assert.strictEqual(await p5.evaluate(() => getComputedStyle(document.body).backgroundColor), 'rgb(241, 244, 250)');
   await p5.click('[data-acc="bienSaltar"]'); await p5.click('[data-tab="ajustes"]'); await p5.click('[data-tema="auto"]');
-  assert.strictEqual(await p5.evaluate(() => getComputedStyle(document.body).backgroundColor), 'rgb(11, 19, 17)');
+  assert.strictEqual(await p5.evaluate(() => getComputedStyle(document.body).backgroundColor), 'rgb(5, 10, 28)');
   await p5.reload();
-  assert.strictEqual(await p5.evaluate(() => getComputedStyle(document.body).backgroundColor), 'rgb(11, 19, 17)', 'la elección se recuerda');
+  assert.strictEqual(await p5.evaluate(() => getComputedStyle(document.body).backgroundColor), 'rgb(5, 10, 28)', 'la elección se recuerda');
   const p4 = await nuevo('2026-11-12', `localStorage.setItem('reponer.v1', '{dañado');`);
   await p4.goto(BASE);
   assert.ok(await p4.evaluate(() => S.ejemplo === true));
